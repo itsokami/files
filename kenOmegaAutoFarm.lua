@@ -54,7 +54,7 @@ delay(8, function()
 	_G.enabled = true
 	_G.disableLongJobs = true
 
-	syn.queue_on_teleport("loadfile('kenOmegaAutofarm.lua')()")
+	syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/kenOmegaAutoFarm.lua', true))()")
 
 	for _, child in pairs(character:GetDescendants()) do
 		if child:IsA("Humanoid") and child.Name == character.Name then
