@@ -478,7 +478,7 @@ delay(10, function()
 		notice.Text = "TELEPORTING TO NEXT SERVER..."
 		shadow.Text = "TELEPORTING TO NEXT SERVER..."
 
-		syn.queue_on_teleport("loadstring(game:HttpGet('https://github.com/itsokami/files/blob/master/artifactHunter.lua?raw=true', true))()")
+		syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/artifactHunter.lua', true)()")
 
 		local function joinNextServer()
 			warn("UPDATING SERVERS...")
