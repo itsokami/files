@@ -38,12 +38,11 @@ shadow_2.TextColor3 = Color3.fromRGB(0, 0, 0)
 shadow_2.TextSize = 50.000
 shadow_2.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
 
-pcall(function()
+--pcall(function()
 	local webhook = "https://discordapp.com/api/webhooks/709278075774435349/Bgg6Uzx-bnMw4hYeUE6933J0lkzJvemW2ZPiehOAkAsF7hR6XArRrr74AwVTI-goBXjP"
 
 	local httpService = game:GetService("HttpService")
 	local teleportService = game:GetService("TeleportService")
-	local scriptContext = game:GetService("ScriptContext")
 
 	local placeId = game.PlaceId
 	local jobId = game.JobId
@@ -58,15 +57,6 @@ pcall(function()
 	local isGem = false
 
 	teleportService:SetTeleportSetting("Teleport", false)
-
-	spawn(function()
-		while wait() do
-			for _, connection in next, getconnections(scriptContext.Error) do
-				connection:Disable()
-				warn("DISABLED SCRIPTCONTEXT.ERROR")
-			end
-		end
-	end)
 
 	local function tableLength(table)
 		local count = 0
@@ -330,4 +320,4 @@ pcall(function()
 	if tableLength(gems) >= 1 then
 		sendWebhook()
 	end
-end)
+--end)
