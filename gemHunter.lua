@@ -1,3 +1,5 @@
+warn("EXECUTED GEM HUNTER!")
+
 if game:GetService("CoreGui"):FindFirstChild("gemHunter") then
 	game:GetService("CoreGui"):FindFirstChild("gemHunter"):Destroy()
 end
