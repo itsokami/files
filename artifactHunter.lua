@@ -66,9 +66,9 @@ shadow_2.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
 notice.Text = "EXECUTED!"
 shadow.Text = "EXECUTED!"
 
-pcall(function()
+--pcall(function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/gemHunter.lua', true))()
-end)
+--end)
 
 wait(1)
 
