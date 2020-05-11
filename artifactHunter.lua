@@ -66,14 +66,19 @@ shadow_2.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
 notice.Text = "EXECUTED!"
 shadow.Text = "EXECUTED!"
 
+wait(1)
+
+notice.Text = "LOADING ADD-ONS..."
+shadow.Text = "LOADING ADD-ONS..."
+
 pcall(function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/gemHunter.lua', true))()
 end)
 
 wait(1)
 
-notice.Text = "LOADING..."
-shadow.Text = "LOADING..."
+notice.Text = "WAITING FOR GAME..."
+shadow.Text = "WAITING FOR GAME..."
 
 delay(10, function()
 	pcall(function()
