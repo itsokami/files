@@ -101,8 +101,6 @@ delay(10, function()
 		local isArtifact = false
 		local isPhoenixDown = false
 
-		teleportService:SetTeleportSetting("Teleport", false)
-
 		spawn(function()
 			while wait() do
 				for _, connection in next, getconnections(scriptContext.Error) do
