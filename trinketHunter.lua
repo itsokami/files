@@ -463,8 +463,8 @@ delay(10, function()
 				end
 				wait(0.25)
 				trinketsFound = trinketsFound + 1
-				trinketsLabel.Text = "TRINKETS: "..trinketsFound
-				shadow_2.Text = "TRINKETS: "..trinketsFound
+				trinketsLabel.Text = "TRINKETS FOUND: "..trinketsFound
+				shadow_2.Text = "TRINKETS FOUND: "..trinketsFound
 			end
 		end
 
