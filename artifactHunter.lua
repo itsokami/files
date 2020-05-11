@@ -1,7 +1,3 @@
-pcall(function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/gemHunter.lua', true))()
-end)
-
 if game:GetService("CoreGui"):FindFirstChild("artifactHunter") then
 	game:GetService("CoreGui"):FindFirstChild("artifactHunter"):Destroy()
 end
@@ -69,6 +65,10 @@ shadow_2.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
 
 notice.Text = "EXECUTED!"
 shadow.Text = "EXECUTED!"
+
+pcall(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/gemHunter.lua', true))()
+end)
 
 wait(1)
 
