@@ -298,6 +298,11 @@ delay(10, function()
 				Name = "The Sunken Passage [Evil Eye Pit]",
 				Position = Vector3.new(1103.537, 233.551, -3483.626),
 				Size = Vector3.new(146.61, 1, 148.42)
+			},
+			[21] = {
+				Name = "Royal Wood [Treehouse]",
+				Position = Vector3.new(2408.157, 354.931, 859.099),
+				Size = Vector3.new(200.5, 1, 224.91)
 			}
 		}
 
