@@ -87,7 +87,7 @@ delay(10, function()
 		local trinketSpawns = {}
 		local trinkets = {}
 		
-		local artifactsFound = 0
+		local trinketsFound = 0
 
 		local isArtifact = false
 		local isPhoenixDown = false
@@ -462,17 +462,17 @@ delay(10, function()
 					table.insert(trinkets[location], #trinkets[location] + 1, item)
 				end
 				wait(0.25)
-				artifactsFound = artifactsFound + 1
-				trinketsLabel.Text = "TRINKETS: "..artifactsFound
-				shadow_2.Text = "TRINKETS: "..artifactsFound
+				trinketsFound = trinketsFound + 1
+				trinketsLabel.Text = "TRINKETS: "..trinketsFound
+				shadow_2.Text = "TRINKETS: "..trinketsFound
 			end
 		end
 
-		if not syn_io_isfile("artifactServerList.JSON") then
+		if not syn_io_isfile("rogueLineageServerList.JSON") then
 			servers = refresh()
 			table.remove(servers, 1)
 		else
-			servers = httpService:JSONDecode(syn_io_read("artifactServerList.JSON"))
+			servers = httpService:JSONDecode(syn_io_read("rogueLineageServerList.JSON"))
 			if #servers < 1 then
 				servers = refresh()
 				table.remove(servers, 1)
@@ -514,7 +514,7 @@ delay(10, function()
 		local function joinNextServer()
 			warn("UPDATING SERVERS...")
 			local nextServer = table.remove(servers, 1)
-			syn_io_write("artifactServerList.JSON", httpService:JSONEncode(servers))
+			syn_io_write("rogueLineageServerList.JSON", httpService:JSONEncode(servers))
 			teleportService:TeleportToPlaceInstance(3016661674, nextServer)
 			warn("SERVERS UPDATED!")
 		end
