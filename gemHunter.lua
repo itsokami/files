@@ -1,4 +1,4 @@
-warn("EXECUTED GEM HUNTER!")
+warn("LOADED GEM ADDON!")
 
 if game:GetService("CoreGui"):FindFirstChild("gemHunter") then
 	game:GetService("CoreGui"):FindFirstChild("gemHunter"):Destroy()
