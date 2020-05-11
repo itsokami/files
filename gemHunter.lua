@@ -305,7 +305,7 @@ delay(12, function()
 				else
 					table.insert(gems[location], #gems[location] + 1, gem)
 				end
-				wait(0.25)
+				wait()
 				gemsFound = gemsFound + 1
 				gemsLabel.Text = "GEMS FOUND: "..gemsFound
 				shadow_2.Text = "GEMS FOUND: "..gemsFound
