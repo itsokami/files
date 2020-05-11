@@ -3,8 +3,6 @@ if game:GetService("CoreGui"):FindFirstChild("gemHunter") then
 end
 
 local interface = Instance.new("ScreenGui")
-local notice = Instance.new("TextLabel")
-local shadow = Instance.new("TextLabel")
 local gemsLabel = Instance.new("TextLabel")
 local shadow_2 = Instance.new("TextLabel")
 
@@ -16,7 +14,7 @@ gemsLabel.Name = "gems"
 gemsLabel.Parent = interface
 gemsLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 gemsLabel.BackgroundTransparency = 1.000
-gemsLabel.Position = UDim2.new(0, 0, 0.25, 0)
+gemsLabel.Position = UDim2.new(0, 0, 0.3, 0)
 gemsLabel.Size = UDim2.new(1, 0, 1, 0)
 gemsLabel.ZIndex = 2
 gemsLabel.Font = Enum.Font.Antique
