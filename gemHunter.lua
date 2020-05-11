@@ -219,6 +219,11 @@ delay(12, function()
 				Name = "Royal Wood [Treehouse]",
 				Position = Vector3.new(2408.157, 354.931, 859.099),
 				Size = Vector3.new(200.5, 1, 224.91)
+			},
+			[22] = {
+				Name = "Castle Rock [Lab]",
+				Position = Vector3.new(5787.864, 430.589, 622.816),
+				Size = Vector3.new(293.34, 1, 226.25)
 			}
 		}
 
