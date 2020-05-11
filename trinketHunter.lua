@@ -138,7 +138,7 @@ delay(10, function()
 			elseif isPhoenixDown then
 				JSONTable["content"] = "<@&708888760648990751>"
 			elseif isGem then
-				JSONTable["content"] = "<@&709270960200482816>"
+				JSONTable["content"] = "<@&709265976457166869>"
 			end
 			for location, items in next, trinkets do
 				local item = ""
