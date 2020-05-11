@@ -331,7 +331,5 @@ delay(10, function()
 		if tableLength(gems) >= 1 then
 			sendWebhook()
 		end
-
-		syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/gemHunter.lua', true))()")
 	end)
 end)
