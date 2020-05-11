@@ -1,14 +1,14 @@
-if game:GetService("CoreGui"):FindFirstChild("trinketHunter") then
-	game:GetService("CoreGui"):FindFirstChild("trinketHunter"):Destroy()
+if game:GetService("CoreGui"):FindFirstChild("artifactHunter") then
+	game:GetService("CoreGui"):FindFirstChild("artifactHunter"):Destroy()
 end
 
 local interface = Instance.new("ScreenGui")
 local notice = Instance.new("TextLabel")
 local shadow = Instance.new("TextLabel")
-local trinketsLabel = Instance.new("TextLabel")
+local artifactsLabel = Instance.new("TextLabel")
 local shadow_2 = Instance.new("TextLabel")
 
-interface.Name = "trinketHunter"
+interface.Name = "artifactHunter"
 interface.IgnoreGuiInset = true
 interface.Parent = game:GetService("CoreGui")
 
@@ -37,28 +37,28 @@ shadow.TextColor3 = Color3.fromRGB(0, 0, 0)
 shadow.TextSize = 50.000
 shadow.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
 
-trinketsLabel.Name = "trinkets"
-trinketsLabel.Parent = interface
-trinketsLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-trinketsLabel.BackgroundTransparency = 1.000
-trinketsLabel.Position = UDim2.new(0, 0, 0.25, 0)
-trinketsLabel.Size = UDim2.new(1, 0, 1, 0)
-trinketsLabel.ZIndex = 2
-trinketsLabel.Font = Enum.Font.Antique
-trinketsLabel.Text = "TRINKETS FOUND: 0"
-trinketsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-trinketsLabel.TextSize = 50.000
-trinketsLabel.TextStrokeColor3 = Color3.fromRGB(112, 95, 67)
-trinketsLabel.TextStrokeTransparency = 0.000
+artifactLabel.Name = "artifacts"
+artifactLabel.Parent = interface
+artifactLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+artifactLabel.BackgroundTransparency = 1.000
+artifactLabel.Position = UDim2.new(0, 0, 0.25, 0)
+artifactLabel.Size = UDim2.new(1, 0, 1, 0)
+artifactLabel.ZIndex = 2
+artifactLabel.Font = Enum.Font.Antique
+artifactLabel.Text = "ARTIFACTS FOUND: 0"
+artifactLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+artifactLabel.TextSize = 50.000
+artifactLabel.TextStrokeColor3 = Color3.fromRGB(112, 95, 67)
+artifactLabel.TextStrokeTransparency = 0.000
 
 shadow_2.Name = "shadow"
-shadow_2.Parent = trinketsLabel
+shadow_2.Parent = artifactsLabel
 shadow_2.BackgroundColor3 = Color3.fromRGB(230, 230, 230)
 shadow_2.BackgroundTransparency = 1.000
 shadow_2.Position = UDim2.new(0, 2, 0, 2)
 shadow_2.Size = UDim2.new(1, 0, 1, 0)
 shadow_2.Font = Enum.Font.Antique
-shadow_2.Text = "TRINKETS FOUND: 0"
+shadow_2.Text = "ARTIFACTS FOUND: 0"
 shadow_2.TextColor3 = Color3.fromRGB(0, 0, 0)
 shadow_2.TextSize = 50.000
 shadow_2.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
@@ -85,13 +85,12 @@ delay(10, function()
 
 		local servers = {}
 		local trinketSpawns = {}
-		local trinkets = {}
+		local artifacts = {}
 		
-		local trinketsFound = 0
+		local artifactsFound = 0
 
 		local isArtifact = false
 		local isPhoenixDown = false
-		local isGem = false
 
 		teleportService:SetTeleportSetting("Teleport", false)
 
@@ -123,7 +122,7 @@ delay(10, function()
 			local JSONTable = {
 				["embeds"] = {
 					{
-						["title"] = "TRINKETS FOUND",
+						["title"] = "ARTIFACTS FOUND",
 						["description"] = "SCRIPT:\n```java\n// go onto a roblox page and paste this into the address bar | write 'javascript:' infront of the script\n"..teleportScript.."\n```",
 						["fields"] = {},
 						["footer"] = {
@@ -137,10 +136,8 @@ delay(10, function()
 				JSONTable["content"] = "@everyone"
 			elseif isPhoenixDown then
 				JSONTable["content"] = "<@&708888760648990751>"
-			elseif isGem then
-				JSONTable["content"] = "<@&709265976457166869>"
 			end
-			for location, items in next, trinkets do
+			for location, items in next, artifacts do
 				local item = ""
 				for _, value in next, items do
 					item = item..value.."\n"
@@ -340,111 +337,83 @@ delay(10, function()
 
 		local function checkTrinket(trinket)
 			local found = false
-			local item = "unknown item"
+			local artifact = "unknown artifact"
 			if trinket.Name == "Part" then
 				if trinket:IsA("Part") then
 					if trinket.Transparency == 1 and trinket:FindFirstChildOfClass("Attachment") and trinket:FindFirstChildOfClass("Attachment"):FindFirstChildOfClass("ParticleEmitter") and getId(trinket:FindFirstChildOfClass("Attachment"):FindFirstChildOfClass("ParticleEmitter").Texture, 1536547385) and checkTrinketSpawn(trinket) then
-						item = "phoenix down"
+						artifact = "phoenix down"
 						isPhoenixDown = true
 						found = true
 					elseif trinket.Transparency == 1 and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color == Color3.fromRGB(132, 255, 0) and not trinket:FindFirstChildOfClass("SpecialMesh") and checkTrinketSpawn(trinket) then
-						item = "ice essence"
+						artifact = "ice essence"
 						found = true
 					elseif trinket.Transparency == 0 and trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and checkTrinketSpawn(trinket) then
-						item = "fairfrozen"
+						artifact = "fairfrozen"
 						found = true
 					elseif trinket.Transparency ~= 0 and trinket.BrickColor == BrickColor.new("Hot pink") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and checkTrinketSpawn(trinket) then
-						item = "rift gem"
-						found = true
-					elseif trinket.Transparency ~= 0 and trinket.BrickColor == BrickColor.new("Forest green") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and checkTrinketSpawn(trinket) then
-						item = "emerald"
-						isGem = true
-						found = true
-					elseif trinket.Transparency ~= 0 and trinket.BrickColor == BrickColor.new("Lapis") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and checkTrinketSpawn(trinket) then
-						item = "sapphire"
-						isGem = true
-						found = true
-					elseif trinket.Transparency ~= 0 and trinket.BrickColor ~= BrickColor.new("Hot pink") and trinket.BrickColor ~= BrickColor.new("Forest green") and trinket.BrickColor ~= BrickColor.new("Lapis") and trinket.BrickColor ~= BrickColor.new("Cadet blue") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and checkTrinketSpawn(trinket) then
-						item = "ruby"
-						isGem = true
-						found = true
-					elseif trinket.Transparency ~= 0 and trinket.BrickColor == BrickColor.new("Cadet blue") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and checkTrinketSpawn(trinket) then
-						item = "diamond"
-						isGem = true
+						artifact = "rift gem"
 						found = true
 					end
 					if trinket.Transparency == 1 and trinket:FindFirstChildOfClass("Attachment") and trinket:FindFirstChildOfClass("Attachment"):FindFirstChildOfClass("ParticleEmitter") and getId(trinket:FindFirstChildOfClass("Attachment"):FindFirstChildOfClass("ParticleEmitter").Texture, 1536547385) and not checkTrinketSpawn(trinket) then
-						item = "phoenix down (bait)"
+						artifact = "phoenix down (bait)"
 						found = true
 					elseif trinket.Transparency == 1 and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color == Color3.fromRGB(132, 255, 0) and not trinket:FindFirstChildOfClass("SpecialMesh") and not checkTrinketSpawn(trinket) then
-						item = "ice essence (bait)"
+						artifact = "ice essence (bait)"
 						found = true
 					elseif trinket.Transparency == 0 and trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and not checkTrinketSpawn(trinket) then
-						item = "fairfrozen (bait)"
+						artifact = "fairfrozen (bait)"
 						found = true
 					elseif trinket.Transparency ~= 0 and trinket.BrickColor == BrickColor.new("Hot pink") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and not checkTrinketSpawn(trinket) then
-						item = "rift gem (bait)"
-						found = true
-					elseif trinket.Transparency ~= 0 and trinket.BrickColor == BrickColor.new("Forest green") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and not checkTrinketSpawn(trinket) then
-						item = "emerald (bait)"
-						found = true
-					elseif trinket.Transparency ~= 0 and trinket.BrickColor == BrickColor.new("Lapis") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and not checkTrinketSpawn(trinket) then
-						item = "sapphire (bait)"
-						found = true
-					elseif trinket.Transparency ~= 0 and trinket.BrickColor ~= BrickColor.new("Hot pink") and trinket.BrickColor ~= BrickColor.new("Forest green") and trinket.BrickColor ~= BrickColor.new("Lapis") and trinket.BrickColor ~= BrickColor.new("Cadet blue") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and not checkTrinketSpawn(trinket) then
-						item = "ruby (bait)"
-						found = true
-					elseif trinket.Transparency ~= 0 and trinket.BrickColor == BrickColor.new("Cadet blue") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and not checkTrinketSpawn(trinket) then
-						item = "diamond (bait)"
+						artifact = "rift gem (bait)"
 						found = true
 					end
 				elseif trinket:IsA("UnionOperation") then
 					local specialInfo = getspecialinfo(trinket)
 					if getId(specialInfo.AssetId, 2784136660) and trinket.Transparency == 1 and checkTrinketSpawn(trinket) then
-						item = "spider cloak"
+						artifact = "spider cloak"
 						found = true
 					elseif getId(specialInfo.AssetId, 2784136660) and trinket.Transparency == 0 and trinket.BrickColor ~= BrickColor.new("Persimmon") and checkTrinketSpawn(trinket) then
-						item = "nightstone"
+						artifact = "nightstone"
 						found = true
 					elseif getId(specialInfo.AssetId, 2784136660) and trinket.Transparency == 0 and trinket.BrickColor == BrickColor.new("Persimmon") and checkTrinketSpawn(trinket) then
-						item = "philosopher's stone"
+						artifact = "philosopher's stone"
 						found = true
 					elseif getId(specialInfo.AssetId, 2998499856) and checkTrinketSpawn(trinket) then
-						item = "lannis amulet"
+						artifact = "lannis amulet"
 						found = true
 					elseif getId(specialInfo.AssetId, 3158350180) and checkTrinketSpawn(trinket) then
-						item = "amulet of the white king"
+						artifact = "amulet of the white king"
 						found = true
 					elseif getId(specialInfo.AssetId, 3173538928) and checkTrinketSpawn(trinket) then
-						item = "scroom key"
+						artifact = "scroom key"
 						found = true
 					end
 					if getId(specialInfo.AssetId, 2784136660) and trinket.Transparency == 1 and not checkTrinketSpawn(trinket) then
-						item = "spider cloak (bait)"
+						artifact = "spider cloak (bait)"
 						found = true
 					elseif getId(specialInfo.AssetId, 2784136660) and trinket.Transparency == 0 and trinket.BrickColor ~= BrickColor.new("Persimmon") and not checkTrinketSpawn(trinket) then
-						item = "nightstone (bait)"
+						artifact = "nightstone (bait)"
 						found = true
 					elseif getId(specialInfo.AssetId, 2784136660) and trinket.Transparency == 0 and trinket.BrickColor == BrickColor.new("Persimmon") and not checkTrinketSpawn(trinket) then
-						item = "philosopher's stone (bait)"
+						artifact = "philosopher's stone (bait)"
 						found = true
 					elseif getId(specialInfo.AssetId, 2998499856) and not checkTrinketSpawn(trinket) then
-						item = "lannis amulet (bait)"
+						artifact = "lannis amulet (bait)"
 						found = true
 					elseif getId(specialInfo.AssetId, 3158350180) and not checkTrinketSpawn(trinket) then
-						item = "amulet of the white king (bait)"
+						artifact = "amulet of the white king (bait)"
 						found = true
 					elseif getId(specialInfo.AssetId, 3173538928) and not checkTrinketSpawn(trinket) then
-						item = "scroom key (bait)"
+						artifact = "scroom key (bait)"
 						found = true
 					end
 				elseif trinket:IsA("MeshPart") then
 					if getId(trinket.MeshId, 2520762076) and checkTrinketSpawn(trinket) then
-						item = "howler friend"
+						artifact = "howler friend"
 						found = true
 					end
 					if getId(trinket.MeshId, 2520762076) and not checkTrinketSpawn(trinket) then
-						item = "howler friend (bait)"
+						artifact = "howler friend (bait)"
 						found = true
 					end
 				end
@@ -454,17 +423,17 @@ delay(10, function()
 				if location == "???" then
 					location = "Castle in the Sky"
 				end
-				isArtifact = (not (item == "emerald" or item == "sapphire" or item == "ruby" or item == "diamond" or item == "emerald (bait)" or item == "sapphire (bait)" or item == "ruby (bait)" or item == "diamond (bait)" or item == "phoenix down" or item == "phoenix down (bait)" or item == "ice essence (bait)" or item == "fairfrozen (bait)" or item == "rift gem (bait)" or item == "spider cloak (bait)" or item == "nightstone (bait)" or item == "philosopher's stone (bait)" or item == "lannis amulet (bait)" or item == "amulet of the white king (bait)" or item == "scroom key (bait)" or item == "howler friend (bait)"))
-				if not trinkets[location] then
-					trinkets[location] = {}
-					table.insert(trinkets[location], 1, item)
+				isArtifact = (not (artifact == "phoenix down" or artifact == "phoenix down (bait)" or artifact == "ice essence (bait)" or artifact == "fairfrozen (bait)" or artifact == "rift gem (bait)" or artifact == "spider cloak (bait)" or artifact == "nightstone (bait)" or artifact == "philosopher's stone (bait)" or artifact == "lannis amulet (bait)" or artifact == "amulet of the white king (bait)" or artifact == "scroom key (bait)" or artifact == "howler friend (bait)"))
+				if not artifacts[location] then
+					artifacts[location] = {}
+					table.insert(artifacts[location], 1, artifact)
 				else
-					table.insert(trinkets[location], #trinkets[location] + 1, item)
+					table.insert(artifacts[location], #artifacts[location] + 1, artifact)
 				end
 				wait(0.25)
-				trinketsFound = trinketsFound + 1
-				trinketsLabel.Text = "TRINKETS FOUND: "..trinketsFound
-				shadow_2.Text = "TRINKETS FOUND: "..trinketsFound
+				artifactsFound = artifactsFound + 1
+				artifactsLabel.Text = "ARTIFACTS FOUND: "..artifactsFound
+				shadow_2.Text = "ARTIFACTS FOUND: "..artifactsFound
 			end
 		end
 
@@ -495,7 +464,7 @@ delay(10, function()
 		notice.Text = "TRINKET SPAWNS CHECKED!"
 		shadow.Text = "TRINKET SPAWNS CHECKED!"
 		
-		if tableLength(trinkets) >= 1 then
+		if tableLength(artifacts) >= 1 then
 			sendWebhook()
 		end
 
@@ -509,7 +478,7 @@ delay(10, function()
 		notice.Text = "TELEPORTING TO NEXT SERVER..."
 		shadow.Text = "TELEPORTING TO NEXT SERVER..."
 
-		syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/trinketHunter.lua', true))()")
+		syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/artifactHunter.lua', true))()")
 
 		local function joinNextServer()
 			warn("UPDATING SERVERS...")
