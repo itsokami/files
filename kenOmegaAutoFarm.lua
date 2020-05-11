@@ -101,10 +101,11 @@ delay(8, function()
 				end
 			elseif getCurrentJob() == "posters" then
 				if _G.disableLongJobs then
+					character.HumanoidRootPart.Anchored = false
 					notice.Text = "RESPAWNING..."
 					shadow.Text = "RESPAWNING..."
 					wait(0.25)
-					character.HumanoidRootPart.CFrame = character.HumanoidRootPart.CFrame * CFrame.new(0, -800, 0)
+					character.HumanoidRootPart.CFrame = character.HumanoidRootPart.CFrame * CFrame.new(0, -1000, 0)
 				else
 					character.HumanoidRootPart.Anchored = false
 					repeat 
@@ -120,10 +121,11 @@ delay(8, function()
 				end
 			elseif getCurrentJob() == "dirt" then
 				if _G.disableLongJobs then
+					character.HumanoidRootPart.Anchored = false
 					notice.Text = "RESPAWNING..."
 					shadow.Text = "RESPAWNING..."
 					wait(0.25)
-					character.HumanoidRootPart.CFrame = character.HumanoidRootPart.CFrame * CFrame.new(0, -800, 0)
+					character.HumanoidRootPart.CFrame = character.HumanoidRootPart.CFrame * CFrame.new(0, -1000, 0)
 				else
 					character.HumanoidRootPart.Anchored = false
 					repeat 
