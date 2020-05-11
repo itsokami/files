@@ -12,31 +12,6 @@ interface.Name = "gemHunter"
 interface.IgnoreGuiInset = true
 interface.Parent = game:GetService("CoreGui")
 
-notice.Name = "notice"
-notice.Parent = interface
-notice.BackgroundColor3 = Color3.fromRGB(112, 95, 67)
-notice.BackgroundTransparency = 0.750
-notice.Size = UDim2.new(1, 0, 1, 0)
-notice.ZIndex = 2
-notice.Font = Enum.Font.Antique
-notice.Text = "LOADING..."
-notice.TextColor3 = Color3.fromRGB(255, 255, 255)
-notice.TextSize = 50.000
-notice.TextStrokeColor3 = Color3.fromRGB(112, 95, 67)
-notice.TextStrokeTransparency = 0.000
-
-shadow.Name = "shadow"
-shadow.Parent = notice
-shadow.BackgroundColor3 = Color3.fromRGB(230, 230, 230)
-shadow.BackgroundTransparency = 1.000
-shadow.Position = UDim2.new(0, 2, 0, 2)
-shadow.Size = UDim2.new(1, 0, 1, 0)
-shadow.Font = Enum.Font.Antique
-shadow.Text = "LOADING..."
-shadow.TextColor3 = Color3.fromRGB(0, 0, 0)
-shadow.TextSize = 50.000
-shadow.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
-
 gemsLabel.Name = "gems"
 gemsLabel.Parent = interface
 gemsLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -62,14 +37,6 @@ shadow_2.Text = "GEMS FOUND: 0"
 shadow_2.TextColor3 = Color3.fromRGB(0, 0, 0)
 shadow_2.TextSize = 50.000
 shadow_2.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
-
-notice.Text = "EXECUTED!"
-shadow.Text = "EXECUTED!"
-
-wait(1)
-
-notice.Text = "LOADING..."
-shadow.Text = "LOADING..."
 
 delay(10, function()
 	pcall(function()
@@ -102,9 +69,6 @@ delay(10, function()
 			end
 		end)
 
-		notice.Text = "STARTING..."
-		shadow.Text = "STARTING..."
-
 		local function tableLength(table)
 			local count = 0
 			for _ in pairs(table) do
@@ -114,8 +78,6 @@ delay(10, function()
 		end
 
 		local function sendWebhook()
-			notice.Text = "SENDING WEBHOOK..."
-			shadow.Text = "SENDING WEBHOOK..."
 			local time = os.date("*t")
 			time = string.format("%02d:%02d:%02d", time.hour, time.min, time.sec) or "00:00:00"
 			local JSONTable = {
@@ -144,9 +106,6 @@ delay(10, function()
 					["value"] = string.upper(item)
 				})
 			end
-			wait(1)
-			notice.Text = "WEBHOOK SENT!"
-			shadow.Text = "WEBHOOK SENT!"
 			return syn.request({
 				Url = webhook,
 				Method = "POST",
@@ -363,35 +322,15 @@ delay(10, function()
 			end
 		end
 
-		wait(1)
-
-		notice.Text = "CHECKING TRINKET SPAWNS..."
-		shadow.Text = "CHECKING TRINKET SPAWNS..."
-
 		for _, child in next, workspace:GetChildren() do
 			if child:IsA("BasePart") then
 				checkTrinket(child)
 			end
 		end
-
-		wait(1)
-
-		notice.Text = "TRINKET SPAWNS CHECKED!"
-		shadow.Text = "TRINKET SPAWNS CHECKED!"
 		
 		if tableLength(gems) >= 1 then
 			sendWebhook()
 		end
-
-		wait(1)
-
-		notice.Text = "CHECKING SERVERS..."
-		shadow.Text = "CHECKING SERVERS..."
-
-		wait(1)
-
-		notice.Text = "TELEPORTING TO NEXT SERVER..."
-		shadow.Text = "TELEPORTING TO NEXT SERVER..."
 
 		syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/gemHunter.lua', true))()")
 	end)
