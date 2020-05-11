@@ -366,7 +366,7 @@ delay(10, function()
 					elseif trinket.Transparency == 1 and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color == Color3.fromRGB(132, 255, 0) and checkTrinketSpawn(trinket) then
 						artifact = "ice essence"
 						found = true
-					elseif trinket.Transparency == 1 and not trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color ~= Color3.fromRGB(110, 49, 250) and checkTrinketSpawn(trinket) then
+					elseif trinket.Transparency == 1 and not trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color ~= Color3.fromRGB(110, 49, 250) and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and checkTrinketSpawn(trinket) then
 						artifact = "possibly ice essence?? 8===========D"
 						found = true
 					elseif trinket.Transparency == 0 and trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and checkTrinketSpawn(trinket) then
@@ -382,7 +382,7 @@ delay(10, function()
 					elseif trinket.Transparency == 1 and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color == Color3.fromRGB(132, 255, 0) and not trinket:FindFirstChildOfClass("SpecialMesh") and not checkTrinketSpawn(trinket) then
 						artifact = "ice essence (bait)"
 						found = true
-					elseif trinket.Transparency == 1 and not trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color ~= Color3.fromRGB(110, 49, 250) and not checkTrinketSpawn(trinket) then
+					elseif trinket.Transparency == 1 and not trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color ~= Color3.fromRGB(110, 49, 250) and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and not checkTrinketSpawn(trinket) then
 						artifact = "possibly ice essence?? 8===========D"
 						found = true
 					elseif trinket.Transparency == 0 and trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and not checkTrinketSpawn(trinket) then
