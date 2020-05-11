@@ -1,3 +1,7 @@
+pcall(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/gemHunter.lua', true))()
+end)
+
 if game:GetService("CoreGui"):FindFirstChild("artifactHunter") then
 	game:GetService("CoreGui"):FindFirstChild("artifactHunter"):Destroy()
 end
@@ -479,7 +483,6 @@ delay(10, function()
 		shadow.Text = "TELEPORTING TO NEXT SERVER..."
 
 		syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/artifactHunter.lua', true))()")
-		syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/gemHunter.lua', true))()")
 
 		local function joinNextServer()
 			warn("UPDATING SERVERS...")
