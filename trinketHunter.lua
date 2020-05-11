@@ -45,7 +45,7 @@ trinketsLabel.Position = UDim2.new(0, 0, 0.25, 0)
 trinketsLabel.Size = UDim2.new(1, 0, 1, 0)
 trinketsLabel.ZIndex = 2
 trinketsLabel.Font = Enum.Font.Antique
-trinketsLabel.Text = "ARTIFACTS FOUND: 0"
+trinketsLabel.Text = "TRINKETS FOUND: 0"
 trinketsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 trinketsLabel.TextSize = 50.000
 trinketsLabel.TextStrokeColor3 = Color3.fromRGB(112, 95, 67)
@@ -58,7 +58,7 @@ shadow_2.BackgroundTransparency = 1.000
 shadow_2.Position = UDim2.new(0, 2, 0, 2)
 shadow_2.Size = UDim2.new(1, 0, 1, 0)
 shadow_2.Font = Enum.Font.Antique
-shadow_2.Text = "ARTIFACTS FOUND: 0"
+shadow_2.Text = "TRINKETS FOUND: 0"
 shadow_2.TextColor3 = Color3.fromRGB(0, 0, 0)
 shadow_2.TextSize = 50.000
 shadow_2.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
@@ -123,7 +123,7 @@ delay(10, function()
 			local JSONTable = {
 				["embeds"] = {
 					{
-						["title"] = "ARTIFACTS FOUND",
+						["title"] = "TRINKETS FOUND",
 						["description"] = "SCRIPT:\n```java\n// go onto a roblox page and paste this into the address bar | write 'javascript:' infront of the script\n"..teleportScript.."\n```",
 						["fields"] = {},
 						["footer"] = {
@@ -138,7 +138,7 @@ delay(10, function()
 			elseif isPhoenixDown then
 				JSONTable["content"] = "<@&708888760648990751>"
 			elseif isGem then
-				JSONTable["content"] = "<@&708888760648990751>"
+				JSONTable["content"] = "<@&709270960200482816>"
 			end
 			for location, items in next, trinkets do
 				local item = ""
