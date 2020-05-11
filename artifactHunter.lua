@@ -415,7 +415,7 @@ delay(10, function()
 					if getId(specialInfo.AssetId, 2784136660) and trinket.Transparency == 1 and not checkTrinketSpawn(trinket) then
 						artifact = "spider cloak (bait)"
 						found = true
-					elseif getId(specialInfo.AssetId, 2784136660) and trinket.Transparency == 1 and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color == Color3.fromRGB(132, 255, 0) and checkTrinketSpawn(trinket) then
+					elseif trinket.Transparency == 1 and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color == Color3.fromRGB(132, 255, 0) and not checkTrinketSpawn(trinket) then
 						artifact = "ice essence (bait) union?"
 						found = true
 					elseif getId(specialInfo.AssetId, 2784136660) and trinket.Transparency == 0 and trinket.BrickColor ~= BrickColor.new("Persimmon") and not checkTrinketSpawn(trinket) then
