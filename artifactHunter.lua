@@ -369,7 +369,7 @@ delay(10, function()
 						artifact = "ice essence"
 						found = true
 					elseif trinket.Transparency == 0 and trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and checkTrinketSpawn(trinket) then
-						artifact = "fair frozen"
+						artifact = "fairfrozen"
 						found = true
 					elseif trinket.Transparency ~= 0 and trinket.BrickColor == BrickColor.new("Hot pink") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and checkTrinketSpawn(trinket) then
 						artifact = "rift gem"
@@ -382,7 +382,7 @@ delay(10, function()
 						artifact = "ice essence (bait)"
 						found = true
 					elseif trinket.Transparency == 0 and trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and not checkTrinketSpawn(trinket) then
-						artifact = "fair frozen (bait)"
+						artifact = "fairfrozen (bait)"
 						found = true
 					elseif trinket.Transparency ~= 0 and trinket.BrickColor == BrickColor.new("Hot pink") and trinket:FindFirstChildOfClass("SpecialMesh") and getId(trinket:FindFirstChildOfClass("SpecialMesh").MeshId, 2877143560) and not checkTrinketSpawn(trinket) then
 						artifact = "rift gem (bait)"
@@ -444,7 +444,7 @@ delay(10, function()
 				if location == "???" then
 					location = "Castle in the Sky"
 				end
-				isArtifact = (not (artifact == "phoenix down" or artifact == "phoenix down (bait)" or artifact == "ice essence (bait)" or artifact == "fair frozen (bait)" or artifact == "rift gem (bait)" or artifact == "spider cloak (bait)" or artifact == "nightstone (bait)" or artifact == "philosopher's stone (bait)" or artifact == "lannis amulet (bait)" or artifact == "amulet of the white king (bait)" or artifact == "scroom key (bait)" or artifact == "howler friend (bait)"))
+				isArtifact = (not (artifact == "phoenix down" or artifact == "phoenix down (bait)" or artifact == "ice essence (bait)" or artifact == "fairfrozen (bait)" or artifact == "rift gem (bait)" or artifact == "spider cloak (bait)" or artifact == "nightstone (bait)" or artifact == "philosopher's stone (bait)" or artifact == "lannis amulet (bait)" or artifact == "amulet of the white king (bait)" or artifact == "scroom key (bait)" or artifact == "howler friend (bait)"))
 				if not artifacts[location] then
 					artifacts[location] = {}
 					table.insert(artifacts[location], 1, artifact)
