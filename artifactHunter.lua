@@ -73,6 +73,9 @@ shadow.Text = "LOADING ADD-ONS..."
 
 pcall(function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/gemHunter.lua', true))()
+end)
+
+pcall(function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/ingredientHunter.lua', true))()
 end)
 
