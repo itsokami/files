@@ -107,9 +107,10 @@ delay(12, function()
 		end
 
 		for _, child in next, workspace:GetChildren() do
-			if child:IsA("Folder") and child:FindFirstChild("UnionOperation") and child:FindFirstChildOfClass("UnionOperation") and child.Part:FindFirstChildOfClass("ClickDetector") then
+			if child:IsA("Folder") and child:FindFirstChild("UnionOperation") and child:FindFirstChildOfClass("UnionOperation") and child.UnionOperation:FindFirstChildOfClass("ClickDetector") then
 				for i, v in next, child:GetChildren() do
 					table.insert(trinketSpawns, v)
+					print(1)
 				end
 			end
 		end
@@ -274,9 +275,6 @@ delay(12, function()
 			end
 			if found then
 				local location = getLocation(trinket)
-				if location == "???" then
-					location = "Castle in the Sky"
-				end
 				isIngredient = (not (ingredient == "desert mist" or ingredient == "bloodthorn"))
 				if not ingredients[location] then
 					ingredients[location] = {}
@@ -291,7 +289,7 @@ delay(12, function()
 			end
 		end
 
-		for _, child in next, workspace:GetChildren() do
+		for _, child in next, trinketSpawns do
 			if child:IsA("BasePart") then
 				checkTrinket(child)
 			end
