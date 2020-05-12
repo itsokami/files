@@ -110,7 +110,6 @@ delay(12, function()
 			if child:IsA("Folder") and child:FindFirstChild("UnionOperation") and child:FindFirstChildOfClass("UnionOperation") and child.UnionOperation:FindFirstChildOfClass("ClickDetector") then
 				for i, v in next, child:GetChildren() do
 					table.insert(trinketSpawns, v)
-					print(1)
 				end
 			end
 		end
