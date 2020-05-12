@@ -86,7 +86,7 @@ delay(12, function()
 			if isIngredient then
 				JSONTable["content"] = "<@&709587165843161128>"
 			end
-			for location, items in next, ingredient do
+			for location, items in next, ingredients do
 				local item = ""
 				for _, value in next, items do
 					item = item..value.."\n"
@@ -264,17 +264,15 @@ delay(12, function()
 				local specialInfo = getspecialinfo(trinket)
 				if getId(specialInfo.AssetId, 3293218896) and trinket.Transparency ~= 1 then
 					ingredient = "desert mist"
-					isIngredient = true
 					found = true
 				elseif getId(specialInfo.AssetId, 2773353559) and trinket.Transparency ~= 1 then
 					ingredient = "bloodthorn"
-					isIngredient = true
 					found = true
 				end
 			end
 			if found then
 				local location = getLocation(trinket)
-				isIngredient = (not (ingredient == "desert mist" or ingredient == "bloodthorn"))
+				isIngredient = true
 				if not ingredients[location] then
 					ingredients[location] = {}
 					table.insert(ingredients[location], 1, ingredient)
