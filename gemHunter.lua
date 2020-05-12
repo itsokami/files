@@ -57,8 +57,6 @@ delay(12, function()
 
 		local isGem = false
 
-		teleportService:SetTeleportSetting("Teleport", false)
-
 		local function tableLength(table)
 			local count = 0
 			for _ in pairs(table) do
