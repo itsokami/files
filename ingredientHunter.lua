@@ -1,4 +1,4 @@
-warn("LOADED INGREDIENTS ADD-ON!")
+warn("LOADED INGREDIENT ADD-ON!")
 
 if game:GetService("CoreGui"):FindFirstChild("ingredientHunter") then
 	game:GetService("CoreGui"):FindFirstChild("ingredientHunter"):Destroy()
