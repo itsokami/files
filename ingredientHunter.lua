@@ -266,7 +266,7 @@ delay(12, function()
 					ingredient = "desert mist"
 					isIngredient = true
 					found = true
-				if getId(specialInfo.AssetId, 2773353559) and trinket.Transparency ~= 1 then
+				elseif getId(specialInfo.AssetId, 2773353559) and trinket.Transparency ~= 1 then
 					ingredient = "bloodthorn"
 					isIngredient = true
 					found = true
