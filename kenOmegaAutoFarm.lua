@@ -275,7 +275,7 @@ delay(8, function()
 		else
 			notice.Text = "GRABBING JOB..."
 			shadow.Text = "GRABBING JOB..."
-			goto(workspace.Corkboard.Board["Color this to paint the board"].Position.X, workspace.Corkboard.Board["Color this to paint the board"].Position.Y, workspace.Corkboard.Board["Color this to paint the board"].Position.Z)
+			goto(workspace.Corkboard.Board["Color this to paint the board"].Position.X, workspace.Corkboard.Board["Color this to paint the board"].Position.Y - 5, workspace.Corkboard.Board["Color this to paint the board"].Position.Z)
 			wait(0.25)
 			fireclickdetector(workspace.Corkboard.Board["Color this to paint the board"].ClickDetector)
 		end
