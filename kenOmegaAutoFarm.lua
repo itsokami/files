@@ -44,6 +44,7 @@ shadow.Text = "LOADING..."
 
 delay(8, function()
 	local players = game:GetService("Players")
+	local httpService = game:GetService("HttpService")
 	local teleportService = game:GetService("TeleportService")
 
 	local player = players.LocalPlayer
