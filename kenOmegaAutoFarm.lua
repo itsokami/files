@@ -66,7 +66,7 @@ delay(8, function()
 	shadow.Text = "STARTING..."
 
 	local function goto(x, y, z)
-		local increment = 5
+		local increment = 4
 		moving = true
 		if x < character.HumanoidRootPart.Position.X then
 			while x < character.HumanoidRootPart.Position.X do
