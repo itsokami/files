@@ -45,6 +45,10 @@ delay(25, function()
 				table.remove(servers, 1)
 			end
 		end
+		
+		game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
+		
+		wait(1)
 
 		for _, child in pairs(workspace:GetChildren()) do
 			if child:IsA("Model") and child.Name:find("Dragon Ball") then
