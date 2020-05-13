@@ -12,6 +12,9 @@ delay(30, function()
 
 	local player = players.LocalPlayer
 	local character = player.Character
+	if not character or not character.Parent then
+		character = player.CharacterAdded:wait()
+	end
 
 	local servers = {}
 
