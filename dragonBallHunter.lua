@@ -1,9 +1,7 @@
 warn("EXECUTED")
-delay(45, function()
-	--pcall(function()
+delay(30, function()
+	pcall(function()
 		warn("STARTING...")
-		local webhook = "https://discordapp.com/api/webhooks/710268887895113799/gh0eBDGqTgavgaijm93cwrX9RdDfnQHJR6YC4VhQhpMoE1DP387gbOP1k1reIfpqsgc6"
-
 		local players = game:GetService("Players")
 		local httpService = game:GetService("HttpService")
 		local teleportService = game:GetService("TeleportService")
@@ -15,34 +13,6 @@ delay(45, function()
 		local character = player.Character
 
 		local servers = {}
-
-		local dragonBall
-
-		local function sendWebhook()
-			local time = os.date("*t")
-			time = string.format("%02d:%02d:%02d", time.hour, time.min, time.sec) or "00:00:00"
-			local JSONTable = {
-				["embeds"] = {
-					{
-						["title"] = dragonBall.." STAR DRAGON BALL FOUND",
-						["description"] = "SCRIPT:\n```java\n// go onto a roblox page and paste this into the address bar | write 'javascript:' infront of the script\n"..teleportScript.."\n```",
-						["fields"] = {},
-						["footer"] = {
-							["text"] = "SENT FROM "..string.upper(player.Name).." | "..time
-						},
-						["color"] = 16758725
-					}
-				}
-			}
-			return syn.request({
-				Url = webhook,
-				Method = "POST",
-				Headers = {
-					["Content-Type"] = "application/json"
-				},
-				Body = httpService:JSONEncode(JSONTable)
-			})
-		end
 
 		local function refresh()
 			local collectionSize = math.floor(httpService:JSONDecode(game:HttpGet("https://www.roblox.com/games/getgameinstancesjson?placeId=" .. placeId .. "&startindex=0")).TotalCollectionSize / 10) * 10
@@ -84,24 +54,9 @@ delay(45, function()
 			if child:IsA("Model") and child.Name:find("Dragon Ball") then
 				for _, otherChild in pairs(child:GetDescendants()) do
 					if otherChild:IsA("ClickDetector") then
-						local foundDragonBall = string.match(child.Name, "%d+")
-						dragonBall = foundDragonBall
-						print("start")
-						for _, value in pairs(player.PlayerValues:GetChildren()) do
-							print(1)
-							if value.Name == "DragonBall"..foundDragonBall then
-								print(2)
-								if value.Value == false then
-									print("yes")
-									character.HumanoidRootPart.CFrame = otherChild.Parent.CFrame
-									wait(1)
-									fireclickdetector(otherChild)
-								else
-									print("no")
-									sendWebhook()
-								end
-							end
-						end
+						character.HumanoidRootPart.CFrame = otherChild.Parent.CFrame
+						wait(1)
+						fireclickdetector(otherChild)
 					end
 				end
 			end
@@ -131,5 +86,5 @@ delay(45, function()
 		teleportService.TeleportInitFailed:Connect(teleportFailed)
 
 		joinNextServer()
-	--end)
+	end)
 end)
