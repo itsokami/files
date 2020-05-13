@@ -1,5 +1,5 @@
 warn("EXECUTED")
-delay(25, function()
+delay(30, function()
 	pcall(function()
 		warn("STARTING...")
 		local players = game:GetService("Players")
@@ -45,9 +45,9 @@ delay(25, function()
 				table.remove(servers, 1)
 			end
 		end
-		
+
 		game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
-		
+
 		wait(1)
 
 		for _, child in pairs(workspace:GetChildren()) do
