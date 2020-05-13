@@ -65,6 +65,60 @@ delay(8, function()
 	notice.Text = "STARTING..."
 	shadow.Text = "STARTING..."
 
+	local function goto(x, y, z)
+		local increment = 5
+		moving = true
+		if x < character.HumanoidRootPart.Position.X then
+			while x < character.HumanoidRootPart.Position.X do
+				wait()
+				character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(character.HumanoidRootPart.Position.X - increment, character.HumanoidRootPart.Position.Y, character.HumanoidRootPart.Position.Z))
+			end
+		end
+		if z < character.HumanoidRootPart.Position.Z then
+			while z < character.HumanoidRootPart.Position.Z do
+				wait()
+				character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(character.HumanoidRootPart.Position.X, character.HumanoidRootPart.Position.Y, character.HumanoidRootPart.Position.Z - increment))
+			end
+		end
+		if x > character.HumanoidRootPart.Position.X then
+			while x > character.HumanoidRootPart.Position.X do
+				wait()
+				character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(character.HumanoidRootPart.Position.X + increment, character.HumanoidRootPart.Position.Y, character.HumanoidRootPart.Position.Z))
+			end
+		end
+		if z > character.HumanoidRootPart.Position.Z then
+			while z > character.HumanoidRootPart.Position.Z do
+				wait()
+				character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(character.HumanoidRootPart.Position.X, character.HumanoidRootPart.Position.Y, character.HumanoidRootPart.Position.Z + increment))
+			end
+		end
+		if y < character.HumanoidRootPart.Position.Y then
+			while y < character.HumanoidRootPart.Position.Y do
+				wait()
+				character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(character.HumanoidRootPart.Position.X, character.HumanoidRootPart.Position.Y - increment, character.HumanoidRootPart.Position.Z))
+			end
+		end
+		if y > character.HumanoidRootPart.Position.Y then
+			while y > character.HumanoidRootPart.Position.Y do
+				wait()
+				character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(character.HumanoidRootPart.Position.X, character.HumanoidRootPart.Position.Y + increment, character.HumanoidRootPart.Position.Z))
+			end
+		end
+		moving = false
+	end
+
+	spawn(function()
+		local function loop()
+			if not character:findFirstChildOfClass("Humanoid") then
+				return
+			end
+			if moving == true then
+				character:findFirstChildOfClass("Humanoid"):ChangeState(11)
+			end
+		end
+		runService:BindToRenderStep("", 0, loop)
+	end)
+
 	local function getCurrentJob()
 		local currentJob
 		if string.lower(jobInfo.Text):find("boulder") then
@@ -93,23 +147,20 @@ delay(8, function()
 							boulder = child
 						end
 					end
-					character.HumanoidRootPart.CFrame = boulder.CFrame * CFrame.new(0, -5, 0)
+					goto(boulder.Position.X, boulder.Position.Y - 5, boulder.Position.Z)
 					wait(0.25)
 					fireclickdetector(boulder.ClickDetector)
 					wait(0.25)
-					character.HumanoidRootPart.CFrame = workspace.Delivery.Part3.CFrame
+					goto(workspace.Delivery.Part3.Position.X, workspace.Delivery.Part3.Position.Y, workspace.Delivery.Part3.Position.Z)
 				end
 			elseif getCurrentJob() == "posters" then
 				if _G.disableLongJobs then
-					character.HumanoidRootPart.Anchored = false
-					notice.Text = "RESPAWNING..."
-					shadow.Text = "RESPAWNING..."
-					wait(0.25)
-					character.HumanoidRootPart.CFrame = character.HumanoidRootPart.CFrame * CFrame.new(0, -1000, 0)
+					teleportService:Teleport(2898237081)
 				else
 					character.HumanoidRootPart.Anchored = false
 					repeat 
 						for _, child in pairs(workspace.Posters:GetChildren()) do
+							goto(child.Position.X, child.Position.Y, child.Position.Z)
 							character.HumanoidRootPart.CFrame = child.CFrame * CFrame.new(-2, 0, 0)
 							wait(0.25)
 							fireclickdetector(child.ClickDetector)
@@ -121,17 +172,13 @@ delay(8, function()
 				end
 			elseif getCurrentJob() == "dirt" then
 				if _G.disableLongJobs then
-					character.HumanoidRootPart.Anchored = false
-					notice.Text = "RESPAWNING..."
-					shadow.Text = "RESPAWNING..."
-					wait(0.25)
-					character.HumanoidRootPart.CFrame = character.HumanoidRootPart.CFrame * CFrame.new(0, -1000, 0)
+					teleportService:Teleport(2898237081)
 				else
 					character.HumanoidRootPart.Anchored = false
 					repeat 
 						for _, child in pairs(workspace.Dirt:GetChildren()) do
 							character.HumanoidRootPart.Anchored = false
-							character.HumanoidRootPart.CFrame = child.CFrame * CFrame.new(0, -2, 0)
+							goto(child.Position.X, child.Position.Y, child.Position.Z)
 							wait(0.25)
 							character.HumanoidRootPart.Anchored = true
 							fireclickdetector(child.ClickDetector)
@@ -145,7 +192,7 @@ delay(8, function()
 			elseif getCurrentJob() == "groceries" then
 				character.HumanoidRootPart.Anchored = false
 				wait(1)
-				character.HumanoidRootPart.CFrame = workspace.Delivery.Part.CFrame
+				goto(workspace.Delivery.Part.Position.X, workspace.Delivery.Part.Position.Y, workspace.Delivery.Part.Position.Z)
 			end
 			wait(1)
 			jobInfo.Text = ""
@@ -153,7 +200,7 @@ delay(8, function()
 			notice.Text = "GRABBING JOB..."
 			shadow.Text = "GRABBING JOB..."
 			character.HumanoidRootPart.Anchored = true
-			character.HumanoidRootPart.CFrame = workspace.Corkboard.Board["Color this to paint the board"].CFrame * CFrame.new(0, -8, 0)
+			goto(workspace.Corkboard.Board["Color this to paint the board"].Position.X, workspace.Corkboard.Board["Color this to paint the board"].Position.Y, workspace.Corkboard.Board["Color this to paint the board"].Position.Z)
 			wait(0.25)
 			fireclickdetector(workspace.Corkboard.Board["Color this to paint the board"].ClickDetector)
 		end
