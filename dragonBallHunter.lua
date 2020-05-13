@@ -79,14 +79,9 @@ delay(30, function()
 		end
 	end
 
-	if not syn_io_isfile("projectXServerList.JSON") then
-		servers = refresh()
-		table.remove(servers, 1)
-	else
-		servers = httpService:JSONDecode(syn_io_read("projectXServerList.JSON"))
-		if #servers < 1 then
-			servers = refresh()
-			table.remove(servers, 1)
+	for _, child in pairs(player.PlayerValues:GetChildren()) do
+		if child.Name:find("DragonBall") then
+			print(child.Value)
 		end
 	end
 
@@ -113,6 +108,17 @@ delay(30, function()
 					end
 				end
 			end
+		end
+	end
+
+	if not syn_io_isfile("projectXServerList.JSON") then
+		servers = refresh()
+		table.remove(servers, 1)
+	else
+		servers = httpService:JSONDecode(syn_io_read("projectXServerList.JSON"))
+		if #servers < 1 then
+			servers = refresh()
+			table.remove(servers, 1)
 		end
 	end
 
