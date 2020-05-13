@@ -96,6 +96,7 @@ delay(30, function()
 
 	for _, child in pairs(workspace:GetChildren()) do
 		if child:IsA("Model") and child.Name:find("Dragon Ball") then
+			print("DRAGON BALL IN SERVER!")
 			for _, otherChild in pairs(child:GetDescendants()) do
 				if otherChild:IsA("ClickDetector") then
 					local foundDragonBall = string.match(child.Name, "%d+")
