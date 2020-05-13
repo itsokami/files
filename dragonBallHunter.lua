@@ -1,5 +1,7 @@
-delay(15, function()
+warn("EXECUTED")
+delay(25, function()
 	pcall(function()
+		WARN("STARTING...")
 		local players = game:GetService("Players")
 		local httpService = game:GetService("HttpService")
 		local teleportService = game:GetService("TeleportService")
@@ -78,4 +80,4 @@ delay(15, function()
 
 		joinNextServer()
 	end)
-end)
+end
