@@ -57,7 +57,7 @@ delay(8, function()
 	local jobInfo = player.PlayerGui.Mission.Frame.Desc
 
 	_G.enabled = true
-	_G.disableLongJobs = true
+	local disableLongJobs = true
 
 	syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/kenOmegaAutoFarm.lua', true))()")
 
@@ -78,6 +78,11 @@ delay(8, function()
 
 	if workspace:FindFirstChild("Map") then
 		workspace.Map:Destroy()
+		for _, child in pairs(workspace:GetChildren()) do
+			if child:IsA("Model") then
+				child:Destroy()
+			end
+		end
 	end
 
 	local function refresh()
@@ -142,18 +147,6 @@ delay(8, function()
 		end
 		moving = false
 	end
-
-	--[[spawn(function()
-		local function loop()
-			if not character:findFirstChildOfClass("Humanoid") then
-				return
-			end
-			if moving == true then
-				character:findFirstChildOfClass("Humanoid"):ChangeState(11)
-			end
-		end
-		runService.RenderStepped:Connect(loop)
-	end)]]
 
 	if not syn_io_isfile("kenOmegaServerList.JSON") then
 		servers = refresh()
@@ -221,8 +214,7 @@ delay(8, function()
 		return currentJob
 	end
 
-	while _G.enabled do
-		wait()
+	local function checkJob()
 		if player.PlayerGui.Mission.Frame.Visible == true then
 			if getCurrentJob() == "boulder" then
 				local boulder
@@ -239,23 +231,18 @@ delay(8, function()
 					goto(workspace.Delivery.Part3.Position.X, workspace.Delivery.Part3.Position.Y, workspace.Delivery.Part3.Position.Z)
 				end
 			elseif getCurrentJob() == "posters" then
-				if _G.disableLongJobs then
-					joinNextServer()
-				else
-					repeat 
-						for _, child in pairs(workspace.Posters:GetChildren()) do
-							goto(child.Position.X, child.Position.Y, child.Position.Z)
-							character.HumanoidRootPart.CFrame = child.CFrame * CFrame.new(-2, 0, 0)
-							wait(0.25)
-							fireclickdetector(child.ClickDetector)
-							repeat
-								wait()
-							until child.Decal.Transparency == 0 or player.PlayerGui.Mission.Frame.Visible == false
-						end
-					until player.PlayerGui.Mission.Frame.Visible == false
-				end
+				repeat 
+					for _, child in pairs(workspace.Posters:GetChildren()) do
+						goto(child.Position.X, child.Position.Y, child.Position.Z)
+						wait(0.25)
+						fireclickdetector(child.ClickDetector)
+						repeat
+							wait()
+						until child.Decal.Transparency == 0 or player.PlayerGui.Mission.Frame.Visible == false
+					end
+				until player.PlayerGui.Mission.Frame.Visible == false
 			elseif getCurrentJob() == "dirt" then
-				if _G.disableLongJobs then
+				if disableLongJobs then
 					joinNextServer()
 				else
 					repeat 
@@ -283,4 +270,9 @@ delay(8, function()
 			fireclickdetector(workspace.Corkboard.Board["Color this to paint the board"].ClickDetector)
 		end
 	end
+
+	local function jobChanged()
+		checkJob()
+	end
+	jobInfo.Changed:Connect(jobChanged)
 end)
