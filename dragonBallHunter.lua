@@ -12,6 +12,27 @@ delay(15, function()
 
 		local servers = {}
 
+		local function refresh()
+			local collectionSize = math.floor(httpService:JSONDecode(game:HttpGet("https://www.roblox.com/games/getgameinstancesjson?placeId=" .. placeId .. "&startindex=0")).TotalCollectionSize / 10) * 10
+			local queue = {}
+			for i = 0, collectionSize / 10 do
+				local gameInstance = httpService:JSONDecode(game:HttpGet("https://www.roblox.com/games/getgameinstancesjson?placeId=" .. placeId .. "&startindex="..i * 10))
+				for _, instance in next, gameInstance.Collection do
+					local flag = false
+					for _, nextUp in next, queue do
+						if instance.Guid == nextUp then
+							flag = true
+						end
+					end
+					if instance.Guid ~= jobId and not flag then
+						table.insert(queue, instance.Guid)
+					end
+					flag = false
+				end
+			end
+			return queue
+		end
+
 		if not syn_io_isfile("projectXServerList.JSON") then
 			servers = refresh()
 			table.remove(servers, 1)
