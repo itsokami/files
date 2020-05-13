@@ -151,7 +151,7 @@ delay(8, function()
 				character:findFirstChildOfClass("Humanoid"):ChangeState(11)
 			end
 		end
-		runService.Heartbeat:Connect(loop)
+		runService.RenderStepped:Connect(loop)
 	end)
 
 	if not syn_io_isfile("kenOmegaServerList.JSON") then
