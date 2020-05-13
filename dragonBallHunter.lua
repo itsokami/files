@@ -1,7 +1,7 @@
 warn("EXECUTED")
 delay(25, function()
 	pcall(function()
-		WARN("STARTING...")
+		warn("STARTING...")
 		local players = game:GetService("Players")
 		local httpService = game:GetService("HttpService")
 		local teleportService = game:GetService("TeleportService")
@@ -51,6 +51,7 @@ delay(25, function()
 				for _, otherChild in pairs(child:GetDescendants()) do
 					if otherChild:IsA("ClickDetector") then
 						character.HumanoidRootPart.CFrame = otherChild.Parent.CFrame
+						wait(1)
 						fireclickdetector(otherChild)
 					end
 				end
