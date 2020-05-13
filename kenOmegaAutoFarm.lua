@@ -46,7 +46,7 @@ delay(8, function()
 	local players = game:GetService("Players")
 	local httpService = game:GetService("HttpService")
 	local teleportService = game:GetService("TeleportService")
-	local runService = game:GetService("runService")
+	local runService = game:GetService("RunService")
 
 	local placeId = game.PlaceId
 	local jobId = game.JobId
@@ -221,7 +221,7 @@ delay(8, function()
 		return currentJob
 	end
 
-	while _G.enabled do
+	while _G.enabled and jobInfo.Text ==  do
 		wait()
 		if player.PlayerGui.Mission.Frame.Visible == true then
 			if getCurrentJob() == "boulder" then
