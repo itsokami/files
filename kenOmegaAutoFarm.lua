@@ -270,7 +270,7 @@ delay(8, function()
 				wait(1)
 				goto(workspace.Delivery.Part.Position.X, workspace.Delivery.Part.Position.Y, workspace.Delivery.Part.Position.Z)
 			end
-			wait(1)
+			wait(2.5)
 			jobInfo.Text = ""
 		else
 			notice.Text = "GRABBING JOB..."
