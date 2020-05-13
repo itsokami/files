@@ -1,6 +1,6 @@
 warn("EXECUTED")
-delay(30, function()
-	pcall(function()
+delay(45, function()
+	--pcall(function()
 		warn("STARTING...")
 		local webhook = "https://discordapp.com/api/webhooks/710268887895113799/gh0eBDGqTgavgaijm93cwrX9RdDfnQHJR6YC4VhQhpMoE1DP387gbOP1k1reIfpqsgc6"
 
@@ -86,13 +86,18 @@ delay(30, function()
 					if otherChild:IsA("ClickDetector") then
 						local foundDragonBall = string.match(child.Name, "%d+")
 						dragonBall = foundDragonBall
+						print("start")
 						for _, value in pairs(player.PlayerValues:GetChildren()) do
+							print(1)
 							if value.Name == "DragonBall"..foundDragonBall then
+								print(2)
 								if value.Value == false then
+									print("yes")
 									character.HumanoidRootPart.CFrame = otherChild.Parent.CFrame
 									wait(1)
 									fireclickdetector(otherChild)
 								else
+									print("no")
 									sendWebhook()
 								end
 							end
@@ -126,5 +131,5 @@ delay(30, function()
 		teleportService.TeleportInitFailed:Connect(teleportFailed)
 
 		joinNextServer()
-	end)
+	--end)
 end)
