@@ -101,7 +101,7 @@ delay(8, function()
 	end
 
 	local function goto(x, y, z)
-		local increment = 4
+		local increment = 3.5
 		moving = true
 		if x < character.HumanoidRootPart.Position.X then
 			while x < character.HumanoidRootPart.Position.X do
