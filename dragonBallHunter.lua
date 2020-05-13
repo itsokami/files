@@ -55,12 +55,14 @@ delay(30, function()
 				for _, otherChild in pairs(child:GetDescendants()) do
 					if otherChild:IsA("ClickDetector") then
 						character.HumanoidRootPart.CFrame = otherChild.Parent.CFrame
-						wait(1)
+						wait(2.5)
 						fireclickdetector(otherChild)
 					end
 				end
 			end
 		end
+
+		wait(1)
 
 		syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/dragonBallHunter.lua', true))()")
 
