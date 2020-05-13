@@ -47,13 +47,13 @@ delay(8, function()
 	local httpService = game:GetService("HttpService")
 	local teleportService = game:GetService("TeleportService")
 
+	local placeId = game.PlaceId
+	local jobId = game.JobId
+
 	local player = players.LocalPlayer
 	local character = player.Character
 
 	local jobInfo = player.PlayerGui.Mission.Frame.Desc
-
-	local placeId = game.PlaceId
-	local jobId = game.JobId
 
 	_G.enabled = true
 	_G.disableLongJobs = true
