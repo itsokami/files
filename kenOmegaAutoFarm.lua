@@ -75,7 +75,9 @@ delay(8, function()
 	baseplate.Size = Vector3.new(1271.67, 12.82, 1136.51)
 	baseplate.Position = Vector3.new(-1934.121, 76.019, 22.889)
 
-	workspace.Map:Destroy()
+	if workspace:FindFirstChild("Map") then
+		workspace.Map:Destroy()
+	end
 
 	local function refresh()
 		local collectionSize = math.floor(httpService:JSONDecode(game:HttpGet("https://www.roblox.com/games/getgameinstancesjson?placeId=" .. placeId .. "&startindex=0")).TotalCollectionSize / 10) * 10
