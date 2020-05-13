@@ -51,6 +51,9 @@ delay(8, function()
 
 	local jobInfo = player.PlayerGui.Mission.Frame.Desc
 
+	local placeId = game.PlaceId
+	local jobId = game.JobId
+
 	_G.enabled = true
 	_G.disableLongJobs = true
 
@@ -72,6 +75,27 @@ delay(8, function()
 	baseplate.Position = Vector3.new(-1934.121, 76.019, 22.889)
 
 	workspace.Map:Destroy()
+
+	local function refresh()
+		local collectionSize = math.floor(httpService:JSONDecode(game:HttpGet("https://www.roblox.com/games/getgameinstancesjson?placeId=" .. placeId .. "&startindex=0")).TotalCollectionSize / 10) * 10
+		local queue = {}
+		for i = 0, collectionSize / 10 do
+			local gameInstance = httpService:JSONDecode(game:HttpGet("https://www.roblox.com/games/getgameinstancesjson?placeId=" .. placeId .. "&startindex="..i * 10))
+			for _, instance in next, gameInstance.Collection do
+				local flag = false
+				for _, nextUp in next, queue do
+					if instance.Guid == nextUp then
+						flag = true
+					end
+				end
+				if instance.Guid ~= jobId and not flag then
+					table.insert(queue, instance.Guid)
+				end
+				flag = false
+			end
+		end
+		return queue
+	end
 
 	local function goto(x, y, z)
 		local increment = 5
@@ -127,6 +151,36 @@ delay(8, function()
 		runService:BindToRenderStep("", 0, loop)
 	end)
 
+	if not syn_io_isfile("kenOmegaServerList.JSON") then
+		servers = refresh()
+		table.remove(servers, 1)
+	else
+		servers = httpService:JSONDecode(syn_io_read("kenOmegaServerList.JSON"))
+		if #servers < 1 then
+			servers = refresh()
+			table.remove(servers, 1)
+		end
+	end
+
+	local function joinNextServer()
+		local nextServer = table.remove(servers, 1)
+		syn_io_write("kenOmegaServerList.JSON", httpService:JSONEncode(servers))
+		teleportService:TeleportToPlaceInstance(placeId, nextServer)
+	end
+
+	local function teleportFailed(player, teleportResult, errorMessage)
+		if player == game:GetService("Players").LocalPlayer then
+			delay(1, function()
+				if #servers < 1 then
+					servers = refresh()
+					table.remove(servers, 1)
+				end
+				joinNextServer()
+			end)
+		end
+	end
+	teleportService.TeleportInitFailed:Connect(teleportFailed)
+
 	spawn(function()
 		local function makeLookupTable(table)
 			for i = 1, #table do
@@ -140,7 +194,7 @@ delay(8, function()
 		while wait() do
 			for _, player in ipairs(players:GetPlayers()) do
 				if not scaryPeople[player.UserId] then
-					teleportService:Teleport(2898237081)
+					joinNextServer()
 					break
 				end
 			end
@@ -182,7 +236,7 @@ delay(8, function()
 				end
 			elseif getCurrentJob() == "posters" then
 				if _G.disableLongJobs then
-					teleportService:Teleport(2898237081)
+					joinNextServer()
 				else
 					repeat 
 						for _, child in pairs(workspace.Posters:GetChildren()) do
@@ -198,7 +252,7 @@ delay(8, function()
 				end
 			elseif getCurrentJob() == "dirt" then
 				if _G.disableLongJobs then
-					teleportService:Teleport(2898237081)
+					joinNextServer()
 				else
 					repeat 
 						for _, child in pairs(workspace.Dirt:GetChildren()) do
