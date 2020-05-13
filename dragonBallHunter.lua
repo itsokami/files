@@ -44,9 +44,9 @@ delay(15, function()
 			end
 		end
 
-		for _, child in next, workspace:GetChildren() do
-			if child:IsA("Model") and child.Name:Find("Dragon Ball") then
-				for _, otherChild in pairs(child:Descendants()) do
+		for _, child in pairs(workspace:GetChildren()) do
+			if child:IsA("Model") and child.Name:find("Dragon Ball") then
+				for _, otherChild in pairs(child:GetDescendants()) do
 					if otherChild:IsA("ClickDetector") then
 						character.HumanoidRootPart.CFrame = otherChild.Parent.CFrame
 						fireclickdetector(otherChild)
@@ -78,4 +78,4 @@ delay(15, function()
 
 		joinNextServer()
 	end)
-end)
+end
