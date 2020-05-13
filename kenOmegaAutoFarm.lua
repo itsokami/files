@@ -66,7 +66,7 @@ delay(8, function()
 	shadow.Text = "STARTING..."
 
 	local function goto(x, y, z)
-		local increment = 5
+		local increment = 2.5
 		moving = true
 		if x < character.HumanoidRootPart.Position.X then
 			while x < character.HumanoidRootPart.Position.X do
@@ -139,7 +139,6 @@ delay(8, function()
 		wait()
 		if player.PlayerGui.Mission.Frame.Visible == true then
 			if getCurrentJob() == "boulder" then
-				character.HumanoidRootPart.Anchored = false
 				local boulder
 				if workspace:FindFirstChild("Rusted Rock") then 
 					for _, child in pairs(workspace:GetChildren()) do
@@ -157,7 +156,6 @@ delay(8, function()
 				if _G.disableLongJobs then
 					teleportService:Teleport(2898237081)
 				else
-					character.HumanoidRootPart.Anchored = false
 					repeat 
 						for _, child in pairs(workspace.Posters:GetChildren()) do
 							goto(child.Position.X, child.Position.Y, child.Position.Z)
@@ -174,23 +172,18 @@ delay(8, function()
 				if _G.disableLongJobs then
 					teleportService:Teleport(2898237081)
 				else
-					character.HumanoidRootPart.Anchored = false
 					repeat 
 						for _, child in pairs(workspace.Dirt:GetChildren()) do
-							character.HumanoidRootPart.Anchored = false
 							goto(child.Position.X, child.Position.Y, child.Position.Z)
 							wait(0.25)
-							character.HumanoidRootPart.Anchored = true
 							fireclickdetector(child.ClickDetector)
 							repeat
 								wait()
 							until child.Decal.Transparency == 1 or player.PlayerGui.Mission.Frame.Visible == false
 						end
 					until player.PlayerGui.Mission.Frame.Visible == false
-					character.HumanoidRootPart.Anchored = false
 				end
 			elseif getCurrentJob() == "groceries" then
-				character.HumanoidRootPart.Anchored = false
 				wait(1)
 				goto(workspace.Delivery.Part.Position.X, workspace.Delivery.Part.Position.Y, workspace.Delivery.Part.Position.Z)
 			end
@@ -199,7 +192,6 @@ delay(8, function()
 		else
 			notice.Text = "GRABBING JOB..."
 			shadow.Text = "GRABBING JOB..."
-			character.HumanoidRootPart.Anchored = true
 			goto(workspace.Corkboard.Board["Color this to paint the board"].Position.X, workspace.Corkboard.Board["Color this to paint the board"].Position.Y, workspace.Corkboard.Board["Color this to paint the board"].Position.Z)
 			wait(0.25)
 			fireclickdetector(workspace.Corkboard.Board["Color this to paint the board"].ClickDetector)
