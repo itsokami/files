@@ -80,4 +80,4 @@ delay(25, function()
 
 		joinNextServer()
 	end)
-end
+end)
