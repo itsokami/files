@@ -221,7 +221,7 @@ delay(8, function()
 		return currentJob
 	end
 
-	while _G.enabled and jobInfo.Text ==  do
+	while _G.enabled do
 		wait()
 		if player.PlayerGui.Mission.Frame.Visible == true then
 			if getCurrentJob() == "boulder" then
