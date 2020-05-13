@@ -56,6 +56,7 @@ delay(8, function()
 	local jobInfo = player.PlayerGui.Mission.Frame.Desc
 
 	_G.enabled = true
+	_G.disableLongJobs = true
 
 	syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/kenOmegaAutoFarm.lua', true))()")
 
@@ -235,21 +236,25 @@ delay(8, function()
 					goto(workspace.Delivery.Part3.Position.X, workspace.Delivery.Part3.Position.Y, workspace.Delivery.Part3.Position.Z)
 				end
 			elseif getCurrentJob() == "posters" then
-				repeat 
-					for _, child in pairs(workspace.Posters:GetChildren()) do
-						goto(child.Position.X, child.Position.Y, child.Position.Z)
-						character.HumanoidRootPart.CFrame = child.CFrame * CFrame.new(-2, 0, 0)
-						wait(0.25)
-						fireclickdetector(child.ClickDetector)
-						repeat
-							wait()
-						until child.Decal.Transparency == 0 or player.PlayerGui.Mission.Frame.Visible == false
-					end
-				until player.PlayerGui.Mission.Frame.Visible == false
-			elseif getCurrentJob() == "dirt" then
-				--if _G.disableLongJobs then
+				if _G.disableLongJobs then
 					joinNextServer()
-				--[[else
+				else
+					repeat 
+						for _, child in pairs(workspace.Posters:GetChildren()) do
+							goto(child.Position.X, child.Position.Y, child.Position.Z)
+							character.HumanoidRootPart.CFrame = child.CFrame * CFrame.new(-2, 0, 0)
+							wait(0.25)
+							fireclickdetector(child.ClickDetector)
+							repeat
+								wait()
+							until child.Decal.Transparency == 0 or player.PlayerGui.Mission.Frame.Visible == false
+						end
+					until player.PlayerGui.Mission.Frame.Visible == false
+				end
+			elseif getCurrentJob() == "dirt" then
+				if _G.disableLongJobs then
+					joinNextServer()
+				else
 					repeat 
 						for _, child in pairs(workspace.Dirt:GetChildren()) do
 							goto(child.Position.X, child.Position.Y, child.Position.Z)
@@ -260,7 +265,7 @@ delay(8, function()
 							until child.Decal.Transparency == 1 or player.PlayerGui.Mission.Frame.Visible == false
 						end
 					until player.PlayerGui.Mission.Frame.Visible == false
-				end]]
+				end
 			elseif getCurrentJob() == "groceries" then
 				wait(1)
 				goto(workspace.Delivery.Part.Position.X, workspace.Delivery.Part.Position.Y, workspace.Delivery.Part.Position.Z)
