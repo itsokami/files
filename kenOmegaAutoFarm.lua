@@ -56,7 +56,6 @@ delay(8, function()
 	local jobInfo = player.PlayerGui.Mission.Frame.Desc
 
 	_G.enabled = true
-	_G.disableLongJobs = true
 
 	syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/kenOmegaAutoFarm.lua', true))()")
 
