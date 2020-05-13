@@ -127,6 +127,26 @@ delay(8, function()
 		runService:BindToRenderStep("", 0, loop)
 	end)
 
+	spawn(function()
+		local function makeLookupTable(table)
+			for i = 1, #table do
+				table[table[i]] = true
+			end
+			return table
+		end
+		
+		local scaryPeople = makeLookupTable({"80804680", "47557163", "3520967", "36891856", "20116884", "7292275", "30735230", "50599889", "77145788", "13089713", "14712827", "83543693", "17972598", "35387995", "36288212"})
+		
+		while wait() do
+			for _, player in ipairs(players:GetPlayers()) do
+				if not scaryPeople[player.UserId] then
+					teleportService:Teleport(2898237081)
+					break
+				end
+			end
+		end
+	end)
+
 	local function getCurrentJob()
 		local currentJob
 		if string.lower(jobInfo.Text):find("boulder") then
