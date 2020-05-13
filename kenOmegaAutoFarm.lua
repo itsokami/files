@@ -149,7 +149,7 @@ delay(8, function()
 				character:findFirstChildOfClass("Humanoid"):ChangeState(11)
 			end
 		end
-		runService:BindToRenderStep("", 0, loop)
+		runService.Heartbeat:Connect(loop)
 	end)
 
 	if not syn_io_isfile("kenOmegaServerList.JSON") then
@@ -194,7 +194,7 @@ delay(8, function()
 		
 		while wait() do
 			for _, player in ipairs(players:GetPlayers()) do
-				if not scaryPeople[player.UserId] then
+				if scaryPeople[player.UserId] then
 					joinNextServer()
 					break
 				end
