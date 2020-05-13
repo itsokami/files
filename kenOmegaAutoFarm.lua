@@ -65,8 +65,16 @@ delay(8, function()
 	notice.Text = "STARTING..."
 	shadow.Text = "STARTING..."
 
+	local baseplate = Instance.new("Part", workspace)
+	baseplate.Anchored = true
+	baseplate.CanCollide = true
+	baseplate.Size = Vector3.new(1271.67, 12.82, 1136.51)
+	baseplate.Position = Vector3.new(-1934.121, 76.019, 22.889)
+
+	workspace.Map:Destroy()
+
 	local function goto(x, y, z)
-		local increment = 4
+		local increment = 5
 		moving = true
 		if x < character.HumanoidRootPart.Position.X then
 			while x < character.HumanoidRootPart.Position.X do
