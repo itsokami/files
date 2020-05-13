@@ -143,7 +143,7 @@ delay(8, function()
 		moving = false
 	end
 
-	spawn(function()
+	--[[spawn(function()
 		local function loop()
 			if not character:findFirstChildOfClass("Humanoid") then
 				return
@@ -153,7 +153,7 @@ delay(8, function()
 			end
 		end
 		runService.RenderStepped:Connect(loop)
-	end)
+	end)]]
 
 	if not syn_io_isfile("kenOmegaServerList.JSON") then
 		servers = refresh()
