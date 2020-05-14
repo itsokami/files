@@ -148,6 +148,8 @@ delay(30, function()
 	notice.Text = "CHECKING FOR DRAGON BALLS..."
 	shadow.Text = "CHECKING FOR DRAGON BALLS..."
 
+	wait(1)
+
 	for _, child in pairs(workspace:GetChildren()) do
         if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
 			local foundDragonBall = string.match(child.Name, "%d+")
