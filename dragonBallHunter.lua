@@ -86,10 +86,14 @@ delay(30, function()
 			print(child.Name, child.Value)
 		end
 	end
+	
+	repeat
+		wait()
+		game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
+		character.Humanoid.Health = 0
+	until player.PlayerGui.MainMenu.Enabled = false
 
-	game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
-
-	wait(10)
+	wait(5)
 
 	local tweenInfo = TweenInfo.new(5)
 	local goal = {}
@@ -118,6 +122,8 @@ delay(30, function()
 		end
 	end
 
+	wait(5)
+
 	if not syn_io_isfile("projectXServerList.JSON") then
 		servers = refresh()
 		table.remove(servers, 1)
@@ -128,8 +134,6 @@ delay(30, function()
 			table.remove(servers, 1)
 		end
 	end
-
-	wait(5)
 
 	syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/dragonBallHunter.lua', true))()")
 
