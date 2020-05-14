@@ -74,7 +74,7 @@ delay(30, function()
 			if child.Name == "DragonBall"..value then
 				if child.Value == false then
 					return false
-				else
+				elseif child.Value == true then
 					return true
 				end
 			end
