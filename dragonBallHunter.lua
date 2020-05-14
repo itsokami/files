@@ -90,12 +90,23 @@ delay(45, function()
 
 	wait(1)
 
+	local tweenService = game:GetService("TweenService")
+	local tweenInfo = TweenInfo.new(2.5)
+	local goal = {}
+
 	for _, child in pairs(workspace:GetChildren()) do
 		if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
 			local foundDragonBall = string.match(child.Name, "%d+")
 			dragonBall = foundDragonBall
 			if not hasDragonBall(foundDragonBall) then
-				fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
+				spawn(function()
+					while wait() do
+						fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
+					end
+				end)
+				goal.CFrame = child.CFrame
+		        local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
+		        tween:Play()
 			elseif hasDragonBall(foundDragonBall) then
 				sendWebhook()
 			end
