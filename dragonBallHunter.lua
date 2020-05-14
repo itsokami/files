@@ -89,27 +89,31 @@ delay(45, function()
 
 	game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
 
-	wait(5)
+	wait(10)
 
 	local tweenInfo = TweenInfo.new(5)
 	local goal = {}
 
 	for _, child in pairs(workspace:GetChildren()) do
-		if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
+	    if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
 			local foundDragonBall = string.match(child.Name, "%d+")
 			dragonBall = foundDragonBall
 			warn("DRAGON BALL IN SERVER!")
+			print(hasDragonBall(foundDragonBall))
 			if not hasDragonBall(foundDragonBall) then
 				spawn(function()
-					while wait() do
-						fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
-					end
-				end)
-				goal.CFrame = child.Part.CFrame
+		            while wait() do
+		                fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
+		            end
+		        end)
+		        goal.CFrame = child.Part.CFrame
 		        local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
 		        tween:Play()
+		        wait(5)
+		        warn("GRABBED!")
 			elseif hasDragonBall(foundDragonBall) then
 				sendWebhook()
+				warn("DON'T NEED IT!")
 			end
 		end
 	end
