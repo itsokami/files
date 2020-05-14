@@ -172,7 +172,7 @@ delay(30, function()
 					end
 				end)
 				wait(1)
-				local tweenInfo = TweenInfo.new(5)
+				local tweenInfo = TweenInfo.new(8)
 				local goal = {}
 				goal.CFrame = child.Part.CFrame
 				local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
