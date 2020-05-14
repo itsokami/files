@@ -1,5 +1,5 @@
 warn("EXECUTED")
-delay(1, function()
+delay(45, function()
 	warn("STARTING...")
 	local webhook = "https://discordapp.com/api/webhooks/710268887895113799/gh0eBDGqTgavgaijm93cwrX9RdDfnQHJR6YC4VhQhpMoE1DP387gbOP1k1reIfpqsgc6"
 
