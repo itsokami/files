@@ -157,9 +157,12 @@ delay(30, function()
         if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
 			local foundDragonBall = string.match(child.Name, "%d+")
 			dragonBall = foundDragonBall
-			warn(foundDragonBall.." STAR DRAGON BALL IN SERVER!")
+			notice.Text = foundDragonBall.." STAR DRAGON BALL IN SERVER!"
+			shadow.Text = foundDragonBall.." STAR DRAGON BALL IN SERVER!"
+			wait(1)
 			if not hasDragonBall(foundDragonBall) then
-				warn("I DON'T HAVE IT, GRAB!")
+				notice.Text = "GRABBING..."
+				shadow.Text = "GRABBING..."
 				repeat
 					wait()
 				until character:FindFirstChild("HumanoidRootPart")
@@ -175,9 +178,11 @@ delay(30, function()
 				local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
 				tween:Play()
 				wait(5)
-				warn("GRABBED!")
+				notice.Text = "GRABBED!"
+				shadow.Text = "GRABBED!"
 			elseif hasDragonBall(foundDragonBall) then
-				warn("I HAVE THAT, DON'T GRAB!")
+				notice.Text = "SENDING WEBHOOK..."
+				shadow.Text = "SENDING WEBHOOK..."
 				sendWebhook()
 			end
 		end
