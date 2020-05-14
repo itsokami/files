@@ -6,6 +6,7 @@ delay(30, function()
 	local players = game:GetService("Players")
 	local httpService = game:GetService("HttpService")
 	local teleportService = game:GetService("TeleportService")
+	local tweenService = game:GetService("TweenService")
 
 	local placeId = game.PlaceId
 	local jobId = game.JobId
@@ -90,8 +91,7 @@ delay(30, function()
 
 	wait(5)
 
-	local tweenService = game:GetService("TweenService")
-	local tweenInfo = TweenInfo.new(2.5)
+	local tweenInfo = TweenInfo.new(5)
 	local goal = {}
 
 	for _, child in pairs(workspace:GetChildren()) do
@@ -104,7 +104,7 @@ delay(30, function()
 						fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
 					end
 				end)
-				goal.CFrame = child.CFrame
+				goal.CFrame = child.Part.CFrame
 		        local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
 		        tween:Play()
 			elseif hasDragonBall(foundDragonBall) then
