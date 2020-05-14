@@ -103,7 +103,7 @@ delay(30, function()
 	    if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
 			local foundDragonBall = string.match(child.Name, "%d+")
 			dragonBall = foundDragonBall
-			warn("DRAGON BALL IN SERVER!")
+			warn(foundDragonBall.."STAR DRAGON BALL IN SERVER!")
 			print(hasDragonBall(foundDragonBall))
 			if not hasDragonBall(foundDragonBall) then
 				spawn(function()
@@ -115,10 +115,10 @@ delay(30, function()
 		        local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
 		        tween:Play()
 		        wait(5)
-		        warn("GRAB!")
+		        warn("I DON'T HAVE IT, GRAB!")
 			elseif hasDragonBall(foundDragonBall) then
 				sendWebhook()
-				warn("DON'T GRAB!")
+				warn("I HAVE THAT, DON'T GRAB!")
 			end
 		end
 	end
