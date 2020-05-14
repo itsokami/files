@@ -177,7 +177,7 @@ delay(45, function()
 	notice.Text = "TELEPORTING..."
 	shadow.Text = "TELEPORTING..."
 
-	wait(5)
+	wait(1)
 
 	if not syn_io_isfile("projectXServerList.JSON") then
 		servers = refresh()
