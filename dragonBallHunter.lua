@@ -87,16 +87,17 @@ delay(30, function()
 		end
 	end
 
-	repeat
-		wait()
-		game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
-		character.Humanoid.Health = 0
-	until player.PlayerGui.MainMenu.Enabled == false
+	game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
+	character.Humanoid.Health = 0
 
-	wait(5)
+	warn("LOADING CHARACTER...")
+
+	wait(10)
 
 	local tweenInfo = TweenInfo.new(5)
 	local goal = {}
+
+	warn("CHECKING FOR DRAGON BALLS...")
 
 	for _, child in pairs(workspace:GetChildren()) do
 	    if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
@@ -114,13 +115,15 @@ delay(30, function()
 		        local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
 		        tween:Play()
 		        wait(5)
-		        warn("GRABBED!")
+		        warn("GRAB!")
 			elseif hasDragonBall(foundDragonBall) then
 				sendWebhook()
-				warn("DON'T NEED IT!")
+				warn("DON'T GRAB!")
 			end
 		end
 	end
+
+	warn("TELEPORTING...")
 
 	wait(5)
 
