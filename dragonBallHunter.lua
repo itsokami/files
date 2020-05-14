@@ -43,7 +43,7 @@ notice.Text = "LOADING..."
 shadow.Text = "LOADING..."
 
 warn("EXECUTED")
-delay(45, function()
+delay(30, function()
 	notice.Text = "STARTING..."
 	shadow.Text = "STARTING..."
 	local webhook = "https://discordapp.com/api/webhooks/710268887895113799/gh0eBDGqTgavgaijm93cwrX9RdDfnQHJR6YC4VhQhpMoE1DP387gbOP1k1reIfpqsgc6"
@@ -172,6 +172,8 @@ delay(45, function()
 			end
 		end
 	end
+
+	wait(1)
 
 	notice.Text = "TELEPORTING..."
 	shadow.Text = "TELEPORTING..."
