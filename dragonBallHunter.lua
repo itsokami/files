@@ -81,7 +81,7 @@ delay(45, function()
 
 	for _, child in pairs(player.PlayerValues:GetChildren()) do
 		if child.Name:find("DragonBall") then
-			print(child.Value)
+			print(child.Name, child.Value)
 		end
 	end
 
@@ -97,13 +97,13 @@ delay(45, function()
 					local foundDragonBall = string.match(child.Name, "%d+")
 					dragonBall = foundDragonBall
 					print(foundDragonBall)
-					if hasDragonBall(foundDragonBall) then
-						print("no")
+					if not hasDragonBall(foundDragonBall) then
+						print("not owned")
 						character.HumanoidRootPart.CFrame = otherChild.Parent.CFrame
 						wait(1)
 						fireclickdetector(otherChild)
-					elseif not hasDragonBall(foundDragonBall) then
-						print("yes")
+					elseif hasDragonBall(foundDragonBall) then
+						print("is own")
 						sendWebhook()
 					end
 				end
