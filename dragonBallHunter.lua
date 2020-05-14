@@ -1,5 +1,5 @@
 warn("EXECUTED")
-delay(45, function()
+delay(1, function()
 	warn("STARTING...")
 	local webhook = "https://discordapp.com/api/webhooks/710268887895113799/gh0eBDGqTgavgaijm93cwrX9RdDfnQHJR6YC4VhQhpMoE1DP387gbOP1k1reIfpqsgc6"
 
@@ -9,6 +9,7 @@ delay(45, function()
 
 	local placeId = game.PlaceId
 	local jobId = game.JobId
+	local teleportScript = ("Roblox.GameLauncher.joinGameInstance(%s, '%s');"):format(placeId, jobId)
 
 	local player = players.LocalPlayer
 	local character = player.Character
@@ -91,15 +92,11 @@ delay(45, function()
 
 	for _, child in pairs(workspace:GetChildren()) do
 		if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
-			print("DRAGON BALL IN SERVER!")
 			local foundDragonBall = string.match(child.Name, "%d+")
 			dragonBall = foundDragonBall
-			print(foundDragonBall)
 			if not hasDragonBall(foundDragonBall) then
-				print("not owned")
 				fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
 			elseif hasDragonBall(foundDragonBall) then
-				print("is own")
 				sendWebhook()
 			end
 		end
