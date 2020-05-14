@@ -79,17 +79,12 @@ delay(30, function()
 	local dragonBall
 
 	local function sendWebhook()
-		local time = os.date("*t")
-		time = string.format("%02d:%02d:%02d", time.hour, time.min, time.sec) or "00:00:00"
 		local JSONTable = {
 			["embeds"] = {
 				{
 					["title"] = dragonBall.." STAR DRAGON BALL FOUND",
 					["description"] = "SCRIPT:\n```java\n// go onto a roblox page and paste this into the address bar | write 'javascript:' infront of the script\n"..teleportScript.."\n```",
 					["fields"] = {},
-					["footer"] = {
-						["text"] = time
-					},
 					["color"] = 16758725
 				}
 			}
