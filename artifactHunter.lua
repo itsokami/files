@@ -146,7 +146,9 @@ delay(10, function()
 			if isArtifact then
 				JSONTable["content"] = "@everyone"
 			elseif isPhoenixDown then
-				JSONTable["content"] = "<@&708888760648990751>"
+				JSONTable["content"] = "<@&708888760648990751>
+			elseif isArtifact and isPhoenixDown then
+				JSONTable["content"] = "@everyone"
 			end
 			for location, items in next, artifacts do
 				local item = ""
