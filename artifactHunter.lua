@@ -146,8 +146,8 @@ delay(10, function()
 			if isArtifact then
 				JSONTable["content"] = "@everyone"
 			elseif isPhoenixDown then
-				JSONTable["content"] = "<@&708888760648990751>
-			elseif isArtifact and isPhoenixDown then
+				JSONTable["content"] = "<@&708888760648990751>"
+			elseif isPhoenixDown and isArtifact then
 				JSONTable["content"] = "@everyone"
 			end
 			for location, items in next, artifacts do
@@ -507,7 +507,7 @@ delay(10, function()
 			warn("UPDATING SERVERS...")
 			local nextServer = table.remove(servers, 1)
 			syn_io_write("rogueLineageServerList.JSON", httpService:JSONEncode(servers))
-			teleportService:TeleportToPlaceInstance(3016661674, nextServer)
+			teleportService:TeleportToPlaceInstance(placeId, nextServer)
 			warn("SERVERS UPDATED!")
 		end
 
