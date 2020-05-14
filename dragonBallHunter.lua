@@ -99,8 +99,6 @@ delay(45, function()
 					print(foundDragonBall)
 					if not hasDragonBall(foundDragonBall) then
 						print("not owned")
-						character.HumanoidRootPart.CFrame = otherChild.Parent.CFrame
-						wait(1)
 						fireclickdetector(otherChild)
 					elseif hasDragonBall(foundDragonBall) then
 						print("is own")
