@@ -88,7 +88,7 @@ delay(30, function()
 
 	game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
 
-	wait(1)
+	wait(5)
 
 	local tweenService = game:GetService("TweenService")
 	local tweenInfo = TweenInfo.new(2.5)
