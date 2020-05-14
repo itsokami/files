@@ -266,6 +266,9 @@ delay(12, function()
 				elseif getId(specialInfo.AssetId, 2773353559) and trinket.Transparency ~= 1 then
 					ingredient = "bloodthorn"
 					found = true
+				elseif getId(specialInfo.AssetId, 2766925214) and trinket.Transparency ~= 1 then
+					ingredient = "crown flower"
+					found = true
 				end
 			end
 			if found then
