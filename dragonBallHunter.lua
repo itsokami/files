@@ -21,6 +21,7 @@ delay(45, function()
 	local servers = {}
 
 	local dragonBall
+	local flying = false
 
 	local function sendWebhook()
 		local time = os.date("*t")
@@ -88,37 +89,40 @@ delay(45, function()
 	end
 
 	game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
-	character.Humanoid.Health = 0
 
 	warn("LOADING CHARACTER...")
 
-	wait(10)
-
-	local tweenInfo = TweenInfo.new(5)
-	local goal = {}
+	wait(5)
 
 	warn("CHECKING FOR DRAGON BALLS...")
 
 	for _, child in pairs(workspace:GetChildren()) do
-	    if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
+        if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
 			local foundDragonBall = string.match(child.Name, "%d+")
 			dragonBall = foundDragonBall
-			warn(foundDragonBall.."STAR DRAGON BALL IN SERVER!")
-			print(hasDragonBall(foundDragonBall))
+			warn(foundDragonBall.." STAR DRAGON BALL IN SERVER!")
 			if not hasDragonBall(foundDragonBall) then
+				warn("I DON'T HAVE IT, GRAB!")
+				repeat
+					wait()
+				until character:FindFirstChild("HumanoidRootPart")
 				spawn(function()
-		            while wait() do
-		                fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
-		            end
-		        end)
-		        goal.CFrame = child.Part.CFrame
-		        local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
-		        tween:Play()
-		        wait(5)
-		        warn("I DON'T HAVE IT, GRAB!")
+					while wait() do
+						fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
+					end
+				end)
+				wait(1)
+				local tweenInfo = TweenInfo.new(5)
+				local goal = {}
+				goal.CFrame = child.Part.CFrame
+				local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
+				tween:Play()
+				wait(5)
+				print(child.Part.CFrame.p, character.HumanoidRootPart.CFrame.p)
+				warn("GRABBED!")
 			elseif hasDragonBall(foundDragonBall) then
-				sendWebhook()
 				warn("I HAVE THAT, DON'T GRAB!")
+				sendWebhook()
 			end
 		end
 	end
