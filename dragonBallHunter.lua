@@ -86,12 +86,12 @@ delay(30, function()
 			print(child.Name, child.Value)
 		end
 	end
-	
+
 	repeat
 		wait()
 		game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
 		character.Humanoid.Health = 0
-	until player.PlayerGui.MainMenu.Enabled = false
+	until player.PlayerGui.MainMenu.Enabled == false
 
 	wait(5)
 
