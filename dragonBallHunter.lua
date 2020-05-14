@@ -1,6 +1,51 @@
+if game:GetService("CoreGui"):FindFirstChild("dragonBallHunter") then
+	game:GetService("CoreGui"):FindFirstChild("dragonBallHunter"):Destroy()
+end
+
+local dragonBallHunter = Instance.new("ScreenGui")
+local notice = Instance.new("TextLabel")
+local shadow = Instance.new("TextLabel")
+
+dragonBallHunter.Name = "dragonBallHunter"
+dragonBallHunter.Parent = game:GetService("CoreGui")
+
+notice.Name = "notice"
+notice.Parent = dragonBallHunter
+notice.BackgroundColor3 = Color3.fromRGB(170, 170, 127)
+notice.BackgroundTransparency = 0.750
+notice.Size = UDim2.new(1, 0, 1, 0)
+notice.ZIndex = 2
+notice.Font = Enum.Font.SourceSansBold
+notice.Text = "LOADING..."
+notice.TextColor3 = Color3.fromRGB(255, 255, 255)
+notice.TextSize = 50.000
+notice.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+notice.TextStrokeTransparency = 0.75
+
+shadow.Name = "shadow"
+shadow.Parent = notice
+shadow.BackgroundColor3 = Color3.fromRGB(230, 230, 230)
+shadow.BackgroundTransparency = 1.000
+shadow.Position = UDim2.new(0, 2, 0, 2)
+shadow.Size = UDim2.new(1, 0, 1, 0)
+shadow.Font = Enum.Font.SourceSansBold
+shadow.Text = "LOADING..."
+shadow.TextColor3 = Color3.fromRGB(0, 0, 0)
+shadow.TextSize = 50.000
+shadow.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
+
+notice.Text = "EXECUTED!"
+shadow.Text = "EXECUTED!"
+
+wait(1)
+
+notice.Text = "LOADING..."
+shadow.Text = "LOADING..."
+
 warn("EXECUTED")
 delay(45, function()
-	warn("STARTING...")
+	notice.Text = "STARTING..."
+	shadow.Text = "STARTING..."
 	local webhook = "https://discordapp.com/api/webhooks/710268887895113799/gh0eBDGqTgavgaijm93cwrX9RdDfnQHJR6YC4VhQhpMoE1DP387gbOP1k1reIfpqsgc6"
 
 	local players = game:GetService("Players")
@@ -90,11 +135,13 @@ delay(45, function()
 
 	game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
 
-	warn("LOADING CHARACTER...")
+	notice.Text = "LOADING CHARACTER..."
+	shadow.Text = "LOADING CHARACTER..."
 
 	wait(5)
 
-	warn("CHECKING FOR DRAGON BALLS...")
+	notice.Text = "CHECKING FOR DRAGON BALLS..."
+	shadow.Text = "CHECKING FOR DRAGON BALLS..."
 
 	for _, child in pairs(workspace:GetChildren()) do
         if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
@@ -127,7 +174,8 @@ delay(45, function()
 		end
 	end
 
-	warn("TELEPORTING...")
+	notice.Text = "TELEPORTING..."
+	shadow.Text = "TELEPORTING..."
 
 	wait(5)
 
