@@ -90,21 +90,17 @@ delay(45, function()
 	wait(1)
 
 	for _, child in pairs(workspace:GetChildren()) do
-		if child:IsA("Model") and child.Name:find("Dragon Ball") then
+		if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
 			print("DRAGON BALL IN SERVER!")
-			for _, otherChild in pairs(child:GetDescendants()) do
-				if otherChild:IsA("ClickDetector") then
-					local foundDragonBall = string.match(child.Name, "%d+")
-					dragonBall = foundDragonBall
-					print(foundDragonBall)
-					if not hasDragonBall(foundDragonBall) then
-						print("not owned")
-						fireclickdetector(otherChild)
-					elseif hasDragonBall(foundDragonBall) then
-						print("is own")
-						sendWebhook()
-					end
-				end
+			local foundDragonBall = string.match(child.Name, "%d+")
+			dragonBall = foundDragonBall
+			print(foundDragonBall)
+			if not hasDragonBall(foundDragonBall) then
+				print("not owned")
+				fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
+			elseif hasDragonBall(foundDragonBall) then
+				print("is own")
+				sendWebhook()
 			end
 		end
 	end
