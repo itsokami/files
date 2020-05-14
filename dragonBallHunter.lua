@@ -175,7 +175,6 @@ delay(30, function()
 				local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
 				tween:Play()
 				wait(5)
-				print(child.Part.CFrame.p, character.HumanoidRootPart.CFrame.p)
 				warn("GRABBED!")
 			elseif hasDragonBall(foundDragonBall) then
 				warn("I HAVE THAT, DON'T GRAB!")
