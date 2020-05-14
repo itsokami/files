@@ -98,6 +98,7 @@ delay(45, function()
 		if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
 			local foundDragonBall = string.match(child.Name, "%d+")
 			dragonBall = foundDragonBall
+			warn("DRAGON BALL IN SERVER!")
 			if not hasDragonBall(foundDragonBall) then
 				spawn(function()
 					while wait() do
