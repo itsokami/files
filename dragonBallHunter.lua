@@ -177,7 +177,7 @@ delay(30, function()
 				goal.CFrame = child.Part.CFrame
 				local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
 				tween:Play()
-				wait(5)
+				wait(10)
 				notice.Text = "GRABBED!"
 				shadow.Text = "GRABBED!"
 			elseif hasDragonBall(foundDragonBall) then
