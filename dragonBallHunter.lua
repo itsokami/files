@@ -1,5 +1,5 @@
 warn("EXECUTED")
-delay(30, function()
+delay(45, function()
 	warn("STARTING...")
 	local webhook = "https://discordapp.com/api/webhooks/710268887895113799/gh0eBDGqTgavgaijm93cwrX9RdDfnQHJR6YC4VhQhpMoE1DP387gbOP1k1reIfpqsgc6"
 
@@ -124,7 +124,7 @@ delay(30, function()
 		end
 	end
 
-	wait(1)
+	wait(5)
 
 	syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/dragonBallHunter.lua', true))()")
 
