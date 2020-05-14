@@ -66,7 +66,6 @@ delay(45, function()
 	local servers = {}
 
 	local dragonBall
-	local flying = false
 
 	local function sendWebhook()
 		local time = os.date("*t")
