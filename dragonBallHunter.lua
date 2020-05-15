@@ -143,7 +143,7 @@ delay(30, function()
 	notice.Text = "LOADING CHARACTER..."
 	shadow.Text = "LOADING CHARACTER..."
 
-	wait(10)
+	wait(15)
 
 	notice.Text = "CHECKING FOR DRAGON BALLS..."
 	shadow.Text = "CHECKING FOR DRAGON BALLS..."
