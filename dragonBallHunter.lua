@@ -158,6 +158,9 @@ delay(30, function()
 			if not hasDragonBall(foundDragonBall) then
 				notice.Text = "GRABBING..."
 				shadow.Text = "GRABBING..."
+				repeat
+					wait()
+				until character:FindFirstChild("HumanoidRootPart")
 				spawn(function()
 					while wait() do
 						fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
