@@ -138,12 +138,10 @@ delay(30, function()
 		end
 	end
 
-	game.ReplicatedStorage.RemoteEvents.PlayerFirstJoinedRemote:FireServer()
-
 	notice.Text = "LOADING CHARACTER..."
 	shadow.Text = "LOADING CHARACTER..."
 
-	wait(15)
+	wait(5)
 
 	notice.Text = "CHECKING FOR DRAGON BALLS..."
 	shadow.Text = "CHECKING FOR DRAGON BALLS..."
