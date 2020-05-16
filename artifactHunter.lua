@@ -376,6 +376,7 @@ delay(10, function()
 						found = true
 					elseif trinket.Transparency == 1 and trinket.BrickColor == BrickColor.new("Persimmon") and trinket:FindFirstChildOfClass("PointLight") and checkTrinketSpawn(trinket) then
 						artifact = "ice essence"
+						isIceEssence = true
 						found = true
 					elseif trinket.Transparency == 0 and trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and checkTrinketSpawn(trinket) then
 						artifact = "fairfrozen"
