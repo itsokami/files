@@ -46,7 +46,7 @@ delay(1, function()
 					["embeds"] = {
 						{
 							["title"] = "ARTIFACTS/COLLECTOR FOUND",
-							["description"] = "**SERVER INFO**\nSERVER NAME: "..string.upper(serverInfo.ServerName.Value).."\nSERVER UP TIME: "..string.upper(toDHMS(serverInfo.Lifespan.Value)).."\nPLAYERS: "..tostring(#game.Players:GetPlayers()),
+							["description"] = "**SERVER INFO**\nNAME: "..string.upper(serverInfo.ServerName.Value).."\nUP TIME: "..string.upper(toDHMS(serverInfo.Lifespan.Value)).."\nPLAYERS: "..tostring(#game.Players:GetPlayers()),
 							["fields"] = {},
 							["footer"] = {
 								["text"] = "SENT FROM "..string.upper(game:GetService("Players").LocalPlayer.Name)
@@ -171,11 +171,14 @@ delay(1, function()
 					if trinket.Transparency ~= 0 then
 						artifact = "open"
 						found = true
+					elseif trinket.Transparency == 0 then
+						artifact = "close"
+						found = true
 					end
 				end
 				if found then
 					local location = getLocation(trinket)
-					isArtifact = true
+					isArtifact = (not(artifact == "close"))
 					if not artifacts[location] then
 						artifacts[location] = {}
 						table.insert(artifacts[location], 1, artifact)
