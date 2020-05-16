@@ -104,6 +104,7 @@ delay(10, function()
 
 		local isArtifact = false
 		local isPhoenixDown = false
+		local isIceEssence = false
 
 		spawn(function()
 			while wait() do
@@ -147,7 +148,13 @@ delay(10, function()
 				JSONTable["content"] = "@everyone"
 			elseif isPhoenixDown then
 				JSONTable["content"] = "<@&708888760648990751>"
+			elseif isIceEssence then
+				JSONTable["content"] = "<@&711127394215526450>"
+			elseif isPhoenixDown and isIceEssence then
+				JSONTable["content"] = "<@&708888760648990751> <@&711127394215526450>"
 			elseif isPhoenixDown and isArtifact then
+				JSONTable["content"] = "@everyone"
+			elseif isPhoenixDown and isIceEssence and isArtifact then
 				JSONTable["content"] = "@everyone"
 			end
 			for location, items in next, artifacts do
@@ -367,11 +374,8 @@ delay(10, function()
 						artifact = "phoenix down"
 						isPhoenixDown = true
 						found = true
-					elseif trinket.Transparency == 1 and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color == Color3.fromRGB(132, 255, 0) and checkTrinketSpawn(trinket) then
-						artifact = "ice essence"
-						found = true
 					elseif trinket.Transparency == 1 and trinket.BrickColor == BrickColor.new("Persimmon") and trinket:FindFirstChildOfClass("PointLight") and checkTrinketSpawn(trinket) then
-						artifact = "ice essence (check 2)"
+						artifact = "ice essence"
 						found = true
 					elseif trinket.Transparency == 0 and trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and checkTrinketSpawn(trinket) then
 						artifact = "fairfrozen"
@@ -383,11 +387,8 @@ delay(10, function()
 					if trinket.Transparency == 1 and trinket:FindFirstChildOfClass("Attachment") and trinket:FindFirstChildOfClass("Attachment"):FindFirstChildOfClass("ParticleEmitter") and getId(trinket:FindFirstChildOfClass("Attachment"):FindFirstChildOfClass("ParticleEmitter").Texture, 1536547385) and not checkTrinketSpawn(trinket) then
 						artifact = "phoenix down (bait)"
 						found = true
-					elseif trinket.Transparency == 1 and trinket:FindFirstChildOfClass("PointLight") and trinket:FindFirstChildOfClass("PointLight").Color == Color3.fromRGB(132, 255, 0) and not trinket:FindFirstChildOfClass("SpecialMesh") and not checkTrinketSpawn(trinket) then
-						artifact = "ice essence (bait)"
-						found = true
 					elseif trinket.Transparency == 1 and trinket.BrickColor == BrickColor.new("Persimmon") and trinket:FindFirstChildOfClass("PointLight") and not checkTrinketSpawn(trinket) then
-						artifact = "ice essence (bait/check2)"
+						artifact = "ice essence (bait)"
 						found = true
 					elseif trinket.Transparency == 0 and trinket:FindFirstChild("coldpart") and trinket:FindFirstChildOfClass("SpecialMesh") and trinket:FindFirstChildOfClass("SpecialMesh").MeshType == Enum.MeshType.Sphere and not checkTrinketSpawn(trinket) then
 						artifact = "fairfrozen (bait)"
@@ -452,7 +453,7 @@ delay(10, function()
 				if location == "???" then
 					location = "Castle in the Sky"
 				end
-				isArtifact = (not (artifact == "ice essence (bait/check2)" or artifact == "phoenix down" or artifact == "phoenix down (bait)" or artifact == "ice essence (bait)" or artifact == "fairfrozen (bait)" or artifact == "rift gem (bait)" or artifact == "spider cloak (bait)" or artifact == "nightstone (bait)" or artifact == "philosopher's stone (bait)" or artifact == "lannis amulet (bait)" or artifact == "amulet of the white king (bait)" or artifact == "scroom key (bait)" or artifact == "howler friend (bait)"))
+				isArtifact = (not (artifact == "phoenix down" or artifact == "ice essence" or artifact == "phoenix down (bait)" or artifact == "ice essence (bait)" or artifact == "fairfrozen (bait)" or artifact == "rift gem (bait)" or artifact == "spider cloak (bait)" or artifact == "nightstone (bait)" or artifact == "philosopher's stone (bait)" or artifact == "lannis amulet (bait)" or artifact == "amulet of the white king (bait)" or artifact == "scroom key (bait)" or artifact == "howler friend (bait)"))
 				if not artifacts[location] then
 					artifacts[location] = {}
 					table.insert(artifacts[location], 1, artifact)
