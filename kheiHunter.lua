@@ -171,14 +171,14 @@ delay(1, function()
 					if trinket.Transparency ~= 0 then
 						artifact = "open"
 						found = true
-					elseif trinket.Transparency == 0 then
-						artifact = "close"
-						found = true
+					--[[elseif trinket.Transparency == 0 then
+						artifact = "closed"
+						found = true]]
 					end
 				end
 				if found then
 					local location = getLocation(trinket)
-					isArtifact = (not(artifact == "close"))
+					isArtifact = true --(not(artifact == "closed"))
 					if not artifacts[location] then
 						artifacts[location] = {}
 						table.insert(artifacts[location], 1, artifact)
