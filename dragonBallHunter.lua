@@ -146,7 +146,7 @@ delay(45, function()
 	notice.Text = "CHECKING FOR DRAGON BALLS..."
 	shadow.Text = "CHECKING FOR DRAGON BALLS..."
 
-	wait(1)
+	wait(0.5)
 
 	for _, child in pairs(workspace:GetChildren()) do
         if child:IsA("Model") and child.Name:find("Dragon Ball") and child.Part:FindFirstChildOfClass("ClickDetector") then
@@ -154,7 +154,7 @@ delay(45, function()
 			dragonBall = foundDragonBall
 			notice.Text = foundDragonBall.." STAR DRAGON BALL IN SERVER!"
 			shadow.Text = foundDragonBall.." STAR DRAGON BALL IN SERVER!"
-			wait(1)
+			wait(0.5)
 			if not hasDragonBall(foundDragonBall) then
 				notice.Text = "GRABBING..."
 				shadow.Text = "GRABBING..."
@@ -166,18 +166,21 @@ delay(45, function()
 						fireclickdetector(child.Part:FindFirstChildOfClass("ClickDetector"))
 					end
 				end)
-				wait(1)
+				wait(0.5)
 				local tweenInfo
+				local waitTime
 				if (character.HumanoidRootPart.Position - child.Part.Position).magnitude <= 1000 then
 					tweenInfo = TweenInfo.new(10)
+					waitTime = 10
 				else
 					tweenInfo = TweenInfo.new(15)
+					waitTime = 15
 				end
 				local goal = {}
 				goal.CFrame = child.Part.CFrame
 				local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
 				tween:Play()
-				wait(10)
+				wait(waitTime)
 				notice.Text = "GRABBED!"
 				shadow.Text = "GRABBED!"
 			elseif hasDragonBall(foundDragonBall) then
@@ -188,12 +191,10 @@ delay(45, function()
 		end
 	end
 
-	wait(1)
+	wait(0.5)
 
 	notice.Text = "TELEPORTING..."
 	shadow.Text = "TELEPORTING..."
-
-	wait(5)
 
 	if not syn_io_isfile("projectXServerList.JSON") then
 		servers = refresh()
