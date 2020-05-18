@@ -86,12 +86,10 @@ shadow.Text = "WAITING FOR GAME..."
 
 delay(10, function()
 	pcall(function()
-		local webhook = "https://discordapp.com/api/webhooks/706296789170388992/34HlmzyT16NEDGxGoz_RZgU6yLW2wyYtsd2GSexCKnbmaas0yn0jT5cGBc6sWMKrktvS"
-
 		local httpService = game:GetService("HttpService")
 		local teleportService = game:GetService("TeleportService")
 		local scriptContext = game:GetService("ScriptContext")
-
+		
 		local placeId = game.PlaceId
 		local jobId = game.JobId
 		local teleportScript = ("Roblox.GameLauncher.joinGameInstance(%s, '%s');"):format(placeId, jobId)
@@ -171,7 +169,7 @@ delay(10, function()
 			notice.Text = "WEBHOOK SENT!"
 			shadow.Text = "WEBHOOK SENT!"
 			return syn.request({
-				Url = webhook,
+				Url = _G.webhook,
 				Method = "POST",
 				Headers = {
 					["Content-Type"] = "application/json"
