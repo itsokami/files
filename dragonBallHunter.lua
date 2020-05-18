@@ -141,7 +141,7 @@ delay(45, function()
 	notice.Text = "LOADING CHARACTER..."
 	shadow.Text = "LOADING CHARACTER..."
 
-	wait(5)
+	wait(10)
 
 	notice.Text = "CHECKING FOR DRAGON BALLS..."
 	shadow.Text = "CHECKING FOR DRAGON BALLS..."
@@ -167,7 +167,12 @@ delay(45, function()
 					end
 				end)
 				wait(1)
-				local tweenInfo = TweenInfo.new(20)
+				local tweenInfo
+				if (character.HumanoidRootPart.Position - child.Part.Position).magnitude <= 1000 then
+					tweenInfo = TweenInfo.new(10)
+				else
+					tweenInfo = TweenInfo.new(15)
+				end
 				local goal = {}
 				goal.CFrame = child.Part.CFrame
 				local tween = tweenService:Create(character.HumanoidRootPart, tweenInfo, goal)
