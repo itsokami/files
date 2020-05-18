@@ -53,7 +53,7 @@ spawn(function()
 	end
 end)
 
-delay(30, function()
+delay(45, function()
 	notice.Text = "STARTING..."
 	shadow.Text = "STARTING..."
 
