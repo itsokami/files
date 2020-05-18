@@ -43,11 +43,10 @@ notice.Text = "LOADING..."
 shadow.Text = "LOADING..."
 
 spawn(function()
-	while wait(1) do
+	while wait(2.5) do
 		for _, child in pairs(game:GetDescendants()) do
 			if child:IsA("Sound") then
-				child.Volume = 0
-				child:Stop()
+				child:Destroy()
 			end
 		end
 	end
