@@ -89,7 +89,7 @@ delay(10, function()
 		local httpService = game:GetService("HttpService")
 		local teleportService = game:GetService("TeleportService")
 		local scriptContext = game:GetService("ScriptContext")
-		
+
 		local placeId = game.PlaceId
 		local jobId = game.JobId
 		local teleportScript = ("Roblox.GameLauncher.joinGameInstance(%s, '%s');"):format(placeId, jobId)
@@ -507,7 +507,7 @@ delay(10, function()
 		notice.Text = "TELEPORTING TO NEXT SERVER..."
 		shadow.Text = "TELEPORTING TO NEXT SERVER..."
 
-		syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/artifactHunter.lua', true))()")
+		syn.queue_on_teleport("_G.webhook loadstring(game:HttpGet('https://raw.githubusercontent.com/itsokami/files/master/artifactHunter.lua', true))()")
 
 		local function joinNextServer()
 			warn("UPDATING SERVERS...")
