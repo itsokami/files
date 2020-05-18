@@ -40,8 +40,6 @@ shadow_2.TextStrokeColor3 = Color3.fromRGB(72, 72, 72)
 
 delay(12, function()
 	pcall(function()
-		local webhook = "https://discordapp.com/api/webhooks/709570717921837136/JKYJPj9-RZhtc7GthVu6qNO6cipFU_2L-1ajf7x2r_NuvkgfxhcM5iSfN91Isikl8NpK"
-
 		local httpService = game:GetService("HttpService")
 		local teleportService = game:GetService("TeleportService")
 
@@ -95,7 +93,7 @@ delay(12, function()
 				})
 			end
 			return syn.request({
-				Url = webhook,
+				Url = _G.ingredientWebhook,
 				Method = "POST",
 				Headers = {
 					["Content-Type"] = "application/json"
