@@ -56,8 +56,6 @@ delay(45, function()
 	notice.Text = "STARTING..."
 	shadow.Text = "STARTING..."
 
-	local webhook = "https://discordapp.com/api/webhooks/710268887895113799/gh0eBDGqTgavgaijm93cwrX9RdDfnQHJR6YC4VhQhpMoE1DP387gbOP1k1reIfpqsgc6"
-
 	local players = game:GetService("Players")
 	local httpService = game:GetService("HttpService")
 	local teleportService = game:GetService("TeleportService")
@@ -89,7 +87,7 @@ delay(45, function()
 			}
 		}
 		return syn.request({
-			Url = webhook,
+			Url = _G.webhook,
 			Method = "POST",
 			Headers = {
 				["Content-Type"] = "application/json"
