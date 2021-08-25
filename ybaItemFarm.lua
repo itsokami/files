@@ -147,12 +147,10 @@ local function grabItem()
                 end
             end
             if mp and (mp.Position - player.Character.HumanoidRootPart.Position).magnitude <= 5 then
-                --print("Magnitude check passed");
                 if mp.Transparency ~= 1 then
-                    --print("Valid item check passed");
                     _G.grabbingItem = true;
                     player.Character.HumanoidRootPart.CFrame = CFrame.new(mp.Position) * CFrame.new(0, 3, 0);
-                    wait(0.25);
+                    wait(0.5);
                     if v:FindFirstChildWhichIsA("ClickDetector") then
                         fireclickdetector(v:FindFirstChildWhichIsA("ClickDetector"));
                         for i = 1, 4 do wait() 
@@ -163,7 +161,7 @@ local function grabItem()
                             end
                         end
                     end
-                    wait(0.25);
+                    wait(0.125);
                     _G.grabbingItem = false;
                 end
             end
@@ -181,10 +179,9 @@ local function grabFoundItem(v)
             end
         end
         if mp and mp.Transparency ~= 1 then
-            --print("Valid item check passed(found item)");
             _G.grabbingItem = true;
             player.Character.HumanoidRootPart.CFrame = CFrame.new(mp.Position) * CFrame.new(0, 3, 0);
-            wait(0.25);
+            wait(0.5);
             if v:FindFirstChildWhichIsA("ClickDetector") then
                 fireclickdetector(v:FindFirstChildWhichIsA("ClickDetector"));
                 for i = 1, 4 do wait() 
@@ -195,7 +192,7 @@ local function grabFoundItem(v)
                     end
                 end
             end
-            wait(0.25);
+            wait(0.125);
             _G.grabbingItem = false;
         end
     end
@@ -209,8 +206,9 @@ coroutine.wrap(function()
             for i,v in pairs(workspace.Item_Spawns.Items:GetChildren()) do
                 if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
                     grabFoundItem(v);
-                    wait(0.25);
+                    wait(0.125);
                     _G.foundItem = false;
+                    wait(0.125);
                 end 
             end
         end
@@ -224,9 +222,9 @@ while wait() do
             if _G.grabbingItem then repeat wait() until not _G.grabbingItem; end
             if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
                 player.Character.HumanoidRootPart.CFrame = v;
-                wait(0.25);
+                wait(0.125);
                 grabItem();
-                wait(0.25);
+                wait(0.125);
             end
         end
     end 
