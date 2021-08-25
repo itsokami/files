@@ -161,7 +161,7 @@ local function grabItem()
                             end
                         end
                     end
-                    wait(0.125);
+                    wait(0.25);
                     _G.grabbingItem = false;
                 end
             end
@@ -192,7 +192,7 @@ local function grabFoundItem(v)
                     end
                 end
             end
-            wait(0.125);
+            wait(0.25);
             _G.grabbingItem = false;
         end
     end
@@ -206,9 +206,9 @@ coroutine.wrap(function()
             for i,v in pairs(workspace.Item_Spawns.Items:GetChildren()) do
                 if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
                     grabFoundItem(v);
-                    wait(0.125);
+                    wait(0.25);
                     _G.foundItem = false;
-                    wait(0.125);
+                    wait(0.25);
                 end 
             end
         end
@@ -222,9 +222,9 @@ while wait() do
             if _G.grabbingItem then repeat wait() until not _G.grabbingItem; end
             if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
                 player.Character.HumanoidRootPart.CFrame = v;
-                wait(0.125);
+                wait(0.25);
                 grabItem();
-                wait(0.125);
+                wait(0.25);
             end
         end
     end 
