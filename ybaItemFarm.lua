@@ -5,6 +5,7 @@ _G.grabbingItem = false;
 local players = game:GetService("Players")
 
 local player = players.LocalPlayer
+local character = player.Character
 
 function searchTable(t, index)
     local temp = {};
@@ -153,7 +154,7 @@ local function grabItem()
                     wait(0.5);
                     if v:FindFirstChildWhichIsA("ClickDetector") then
                         fireclickdetector(v:FindFirstChildWhichIsA("ClickDetector"));
-                        for i = 1, 4 do wait() 
+                        for i = 1, 8 do wait() 
                             if (player.PlayerGui:FindFirstChild("Message") and player.PlayerGui.Message:FindFirstChild("TextLabel")) then
                                 if string.match(player.PlayerGui.Message.TextLabel.Text, "You can't have more than") then
                                     v:Destroy();
@@ -161,7 +162,7 @@ local function grabItem()
                             end
                         end
                     end
-                    wait(0.25);
+                    wait(0.125);
                     _G.grabbingItem = false;
                 end
             end
@@ -184,7 +185,7 @@ local function grabFoundItem(v)
             wait(0.5);
             if v:FindFirstChildWhichIsA("ClickDetector") then
                 fireclickdetector(v:FindFirstChildWhichIsA("ClickDetector"));
-                for i = 1, 4 do wait() 
+                for i = 1, 8 do wait() 
                     if (player.PlayerGui:FindFirstChild("Message") and player.PlayerGui.Message:FindFirstChild("TextLabel")) then
                         if string.match(player.PlayerGui.Message.TextLabel.Text, "You can't have more than") then
                             v:Destroy();
@@ -192,7 +193,7 @@ local function grabFoundItem(v)
                     end
                 end
             end
-            wait(0.25);
+            wait(0.125);
             _G.grabbingItem = false;
         end
     end
@@ -200,15 +201,57 @@ end
 
 coroutine.wrap(function()
     while wait() do
+        if _G.autoSellRokaArrow then
+            for _, child in pairs(player.Backpack:GetChildren()) do
+                if child.Name == "Rokakaka" or child.Name == "Mysterious Arrows" then
+                    local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+                    humanoid:EquipTool(child)
+                end
+            end
+            character.RemoteEvent:FireServer("EndDialogue", {
+                    NPC = "Merchant",
+                    Dialogue = "Dialogue5",
+                    Option = "Option2"
+                }
+            )
+        end
+        if _G.autoSellGoldCoins then
+            for _, child in pairs(player.Backpack:GetChildren()) do
+                if child.Name == "Gold Coin" then
+                    local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+                    humanoid:EquipTool(child)
+                end
+            end
+            character.RemoteEvent:FireServer("EndDialogue", {
+                    NPC = "Merchant",
+                    Dialogue = "Dialogue5",
+                    Option = "Option2"
+                }
+            )
+        end
+        if _G.autoSellAllJunk then
+            for _, child in pairs(player.Backpack:GetChildren()) do
+                if child.Name == "Gold Coin" or child.Name == "Rokakaka" or child.Name == "Mysterious Arrows" or child.Name == "Rib Cage of The Saint's Corpse" or child.Name == "Diamond" or child.Name == "Ancient Scroll" or child.Name == "Quinton's Glove" or child.Name == "Steel Ball" then
+                    local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+                    humanoid:EquipTool(child)
+                end
+            end
+            character.RemoteEvent:FireServer("EndDialogue", {
+                    NPC = "Merchant",
+                    Dialogue = "Dialogue5",
+                    Option = "Option2"
+                }
+            )
+        end
         if _G.itemFarm and #(workspace.Item_Spawns.Items:GetChildren()) >= 1 then
             if _G.grabbingItem then repeat wait() until not _G.grabbingItem; end
             _G.foundItem = true;
             for i,v in pairs(workspace.Item_Spawns.Items:GetChildren()) do
                 if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
                     grabFoundItem(v);
-                    wait(0.25);
+                    wait(0.125);
                     _G.foundItem = false;
-                    wait(0.25);
+                    wait(0.125);
                 end 
             end
         end
@@ -217,14 +260,14 @@ end)();
 
 while wait() do
     if _G.itemFarm then
-        for i,v in ipairs(itemSpawns) do
+        for i, v in ipairs(itemSpawns) do
             if _G.foundItem then repeat wait() until not _G.foundItem; end
             if _G.grabbingItem then repeat wait() until not _G.grabbingItem; end
             if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
                 player.Character.HumanoidRootPart.CFrame = v;
-                wait(0.25);
+                wait(0.125);
                 grabItem();
-                wait(0.25);
+                wait(0.125);
             end
         end
     end 
