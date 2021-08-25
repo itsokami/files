@@ -208,21 +208,9 @@ end
 
 coroutine.wrap(function()
     while wait() do
-        for _, child in pairs(player.Backpack:GetChildren()) do
-            if child.Name == "Diamond" then
-                local humanoid = character:FindFirstChildWhichIsA("Humanoid")
-                humanoid:EquipTool(child)
-                character.RemoteEvent:FireServer("EndDialogue", {
-                    NPC = "Merchant",
-                    Dialogue = "Dialogue5",
-                    Option = "Option2"
-                }
-                )
-            end
-        end
         if _G.autoSellRokaArrow then
             for _, child in pairs(player.Backpack:GetChildren()) do
-                if child.Name == "Rokakaka" or child.Name == "Mysterious Arrows" then
+                if child.Name == "Rokakaka" or child.Name == "Mysterious Arrow" then
                     local humanoid = character:FindFirstChildWhichIsA("Humanoid")
                     humanoid:EquipTool(child)
                     character.RemoteEvent:FireServer("EndDialogue", {
@@ -250,7 +238,7 @@ coroutine.wrap(function()
         end
         if _G.autoSellAllJunk then
             for _, child in pairs(player.Backpack:GetChildren()) do
-                if child.Name == "Gold Coin" or child.Name == "Rokakaka" or child.Name == "Mysterious Arrows" or child.Name == "Rib Cage of The Saint's Corpse" or child.Name == "Ancient Scroll" or child.Name == "Quinton's Glove" or child.Name == "Steel Ball" or child.Name == "Zepellin's Headband" or child.Name == "DEO's Diary" then
+                if child.Name == "Gold Coin" or child.Name == "Rokakaka" or child.Name == "Mysterious Arrow" or child.Name == "Rib Cage of The Saint's Corpse" or child.Name == "Ancient Scroll" or child.Name == "Quinton's Glove" or child.Name == "Steel Ball" or child.Name == "Zepellin's Headband" or child.Name == "DEO's Diary" then
                     local humanoid = character:FindFirstChildWhichIsA("Humanoid")
                     humanoid:EquipTool(child)
                     character.RemoteEvent:FireServer("EndDialogue", {
