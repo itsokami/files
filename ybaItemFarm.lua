@@ -1,3 +1,4 @@
+_G.DraggerCircleColor = Color3.fromRGB(255, 150, 255)
 _G.SliderColor = Color3.fromRGB(255, 150, 255)
 _G.ToggleColor = Color3.fromRGB(255, 150, 255)
 
