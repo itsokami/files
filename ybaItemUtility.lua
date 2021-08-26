@@ -342,7 +342,7 @@ local function grabFoundItem(v)
     end
 end
 
-coroutine.wrap(function()
+spawn(function()
     while wait() do
         if shared.toggle and _G.itemFarm and #(workspace.Item_Spawns.Items:GetChildren()) >= 1 then
             if _G.grabbingItem then
@@ -363,7 +363,7 @@ coroutine.wrap(function()
     end
 end)();
 
-coroutine.wrap(function()
+spawn(function()
     while wait() do
         if shared.toggle and _G.itemFarm then
             for i, v in ipairs(itemSpawns) do
@@ -393,7 +393,7 @@ coroutine.wrap(function()
     end
 end)();
 
-coroutine.wrap(function()
+spawn(function()
     while wait() do
         if shared.sellToggle then
             for _, child in pairs(player.Backpack:GetChildren()) do
@@ -409,11 +409,6 @@ coroutine.wrap(function()
                 end
             end
         end
-    end
-end)();
-
-coroutine.wrap(function()
-    while wait(0.125) do
         if shared.arcadeToggle then
             character.RemoteEvent:FireServer("EndDialogue", {
                 NPC = "Item Machine",
