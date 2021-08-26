@@ -488,7 +488,7 @@ end)
 spawn(function()
     while true do
         wait()
-        if shared.standToggle then
+        if shared.standToggle and desiredStand ~= "nil" then
             wait(15)
             repeat
                 wait()
