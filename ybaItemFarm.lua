@@ -1,6 +1,18 @@
 _G.DraggerCircleColor = Color3.fromRGB(255, 150, 255)
 _G.SliderColor = Color3.fromRGB(255, 150, 255)
 _G.ToggleColor = Color3.fromRGB(255, 150, 255)
+_G.ButtonColor = Color3.fromRGB(255, 150, 255)
+
+_G.itemFarm = true;
+_G.foundItem = false;
+_G.grabbingItem = false;
+
+local players = game:GetService("Players")
+
+local player = players.LocalPlayer
+local character = player.Character
+
+local mouse = player:GetMouse()
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
@@ -101,6 +113,20 @@ folder:Toggle("AUTO SELL ITEMS", function(bool)
     print(shared.sellToggle)
 end)
 
+folder:Button("CLICK TELEPORT", function()
+    if not player.Backpack:FindFirstChild("Click Teleport") then
+        local tool = Instance.new("Tool")
+        tool.RequiresHandle = false
+        tool.Name = "CLICK TELEPORT"
+        tool.Activated:connect(function()
+            local position = mouse.Hit + Vector3.new(0, 2.5, 0)
+            position = CFrame.new(position.X, position.Y, position.Z)
+            character.HumanoidRootPart.CFrame = position
+        end)
+        tool.Parent = player.Backpack
+    end
+end)
+
 local speed = 0.25
 
 folder:Slider("SPEED", {
@@ -110,15 +136,6 @@ folder:Slider("SPEED", {
 }, function(value)
     speed = value
 end)
-
-_G.itemFarm = true;
-_G.foundItem = false;
-_G.grabbingItem = false;
-
-local players = game:GetService("Players")
-
-local player = players.LocalPlayer
-local character = player.Character
 
 function searchTable(t, index)
     local temp = {};
