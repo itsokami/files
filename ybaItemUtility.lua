@@ -3,9 +3,9 @@ _G.SliderColor = Color3.fromRGB(255, 150, 255)
 _G.ToggleColor = Color3.fromRGB(255, 150, 255)
 _G.ButtonColor = Color3.fromRGB(255, 150, 255)
 
-_G.itemFarm = true;
-_G.foundItem = false;
-_G.grabbingItem = false;
+_G.itemFarm = true
+_G.foundItem = false
+_G.grabbingItem = false
 
 local players = game:GetService("Players")
 
@@ -132,59 +132,59 @@ end)
 local speed = 0.25
 
 folder:Slider("SPEED", {
-    min = 0.125;
-    max = 1;
-    precise = true;
+    min = 0.125,
+    max = 1,
+    precise = true,
 }, function(value)
     speed = value
 end)
 
 function searchTable(t, index)
-    local temp = {};
+    local temp = {}
     for i, v in pairs(t) do
-        table.insert(temp, tostring(v));
+        table.insert(temp, tostring(v))
     end
     if table.find(temp, index) then
-        temp = nil;
-        return true;
+        temp = nil
+        return true
     end
-    return false;
+    return false
 end
 
-local gc = getgc(true);
-local key = nil;
+local gc = getgc(true)
+local key = nil
 for i = #gc, 1, -1 do
     if type(gc[i]) == "table" then
         if rawget(gc[i], "A") and type(rawget(gc[i], "A")) == "table" and #(rawget(gc[i], "A")) > 2 then
-            key = rawget(gc[i], "A")[2];
-            break;
+            key = rawget(gc[i], "A")[2]
+            break
         end
     end
 end
 
-local oldNamecall;
+local oldNamecall
 oldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
     local args = {
         ...
-    };
+    }
     if not checkcaller() and getnamecallmethod() == "InvokeServer" and tostring(self) == "Returner" and args[1] == "idklolbrah2de" then
         if key then
-            return key;
+            return key
         else
-            return "  ___XP DE KEY";
+            return "  ___XP DE KEY"
         end
     end
     if not checkcaller() and getnamecallmethod() == "InvokeServer" and args[1] == "Reset" then
-        return;
+        return
     end
     if not checkcaller() and getnamecallmethod() == "FireServer" and args[1] == "Reset" then
-        return;
+        return
     end
     if not checkcaller() and getnamecallmethod() == "Kick" then
-        return;
+        return
     end
-    return oldNamecall(self, ...);
-end);
+    return oldNamecall(self, ...)
+end)
 
 for _, connection in pairs(getconnections(player.Idled)) do
     connection:Disable()
@@ -193,12 +193,12 @@ end
 for i, v in pairs(getgc()) do
     if type(v) == "function" and tostring(getfenv(v).script) == 'Client' and #debug.getprotos(v) == 7 and searchTable(debug.getupvalues(v), "RemoteEvent") then
         hookfunction(v, function()
-            return wait(9e9);
-        end);
-        break;
+            return wait(9e9)
+        end)
+        break
     end
 end
-wait(0.5);
+wait(0.5)
 
 local itemSpawns = 
     {
@@ -276,36 +276,36 @@ local itemSpawns =
     CFrame.new(-426.47561645508, 743.84716796875, 460.21655273438),
     CFrame.new(-311.52005004883, 722.84790039062, 438.1628112793),
     CFrame.new(-475.11709594727, 738.84729003906, 212.75103759766)
-};
+}
 
 local function grabItem()
     for i, v in pairs(workspace.Item_Spawns.Items:GetChildren()) do
         if v:IsA("Model") and v:FindFirstChildWhichIsA("MeshPart") or v:FindFirstChildWhichIsA("Part") and v:FindFirstChildWhichIsA("ClickDetector") then
-            local mp;
+            local mp
             for i2, val in pairs(v:GetChildren()) do
                 if ((val:IsA("Part") or val:IsA("MeshPart")) and val.Transparency ~= 1) then
-                    mp = val;
-                    break;
+                    mp = val
+                    break
                 end
             end
             if mp and (mp.Position - player.Character.HumanoidRootPart.Position).magnitude <= 5 then
                 if mp.Transparency ~= 1 then
-                    _G.grabbingItem = true;
-                    player.Character.HumanoidRootPart.CFrame = CFrame.new(mp.Position) * CFrame.new(0, 3, 0);
-                    wait(0.5);
+                    _G.grabbingItem = true
+                    player.Character.HumanoidRootPart.CFrame = CFrame.new(mp.Position) * CFrame.new(0, 3, 0)
+                    wait(0.5)
                     if v:FindFirstChildWhichIsA("ClickDetector") then
-                        fireclickdetector(v:FindFirstChildWhichIsA("ClickDetector"));
+                        fireclickdetector(v:FindFirstChildWhichIsA("ClickDetector"))
                         for i = 1, 8 do
                             wait() 
                             if (player.PlayerGui:FindFirstChild("Message") and player.PlayerGui.Message:FindFirstChild("TextLabel")) then
                                 if string.match(player.PlayerGui.Message.TextLabel.Text, "You can't have more than") then
-                                    v:Destroy();
+                                    v:Destroy()
                                 end
                             end
                         end
                     end
-                    wait(speed);
-                    _G.grabbingItem = false;
+                    wait(speed)
+                    _G.grabbingItem = false
                 end
             end
         end
@@ -314,30 +314,30 @@ end
 
 local function grabFoundItem(v)
     if v:IsA("Model") and v:FindFirstChildWhichIsA("MeshPart") or v:FindFirstChildWhichIsA("Part") and v:FindFirstChildWhichIsA("ClickDetector") then
-        local mp;
+        local mp
         for i, val in pairs(v:GetChildren()) do
             if ((val:IsA("Part") or val:IsA("MeshPart")) and val.Transparency ~= 1) then
-                mp = val;
-                break;
+                mp = val
+                break
             end
         end
         if mp and mp.Transparency ~= 1 then
-            _G.grabbingItem = true;
-            player.Character.HumanoidRootPart.CFrame = CFrame.new(mp.Position) * CFrame.new(0, 3, 0);
-            wait(0.5);
+            _G.grabbingItem = true
+            player.Character.HumanoidRootPart.CFrame = CFrame.new(mp.Position) * CFrame.new(0, 3, 0)
+            wait(0.5)
             if v:FindFirstChildWhichIsA("ClickDetector") then
-                fireclickdetector(v:FindFirstChildWhichIsA("ClickDetector"));
+                fireclickdetector(v:FindFirstChildWhichIsA("ClickDetector"))
                 for i = 1, 8 do
                     wait() 
                     if (player.PlayerGui:FindFirstChild("Message") and player.PlayerGui.Message:FindFirstChild("TextLabel")) then
                         if string.match(player.PlayerGui.Message.TextLabel.Text, "You can't have more than") then
-                            v:Destroy();
+                            v:Destroy()
                         end
                     end
                 end
             end
-            wait(speed);
-            _G.grabbingItem = false;
+            wait(speed)
+            _G.grabbingItem = false
         end
     end
 end
@@ -348,20 +348,20 @@ spawn(function()
             if _G.grabbingItem then
                 repeat
                     wait()
-                until not _G.grabbingItem;
+                until not _G.grabbingItem
             end
-            _G.foundItem = true;
+            _G.foundItem = true
             for i, v in pairs(workspace.Item_Spawns.Items:GetChildren()) do
                 if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
-                    grabFoundItem(v);
-                    wait(speed);
-                    _G.foundItem = false;
-                    wait(speed);
+                    grabFoundItem(v)
+                    wait(speed)
+                    _G.foundItem = false
+                    wait(speed)
                 end
             end
         end
     end
-end);
+end)
 
 spawn(function()
     while wait() do
@@ -370,12 +370,12 @@ spawn(function()
                 if _G.foundItem then
                     repeat
                         wait()
-                    until not _G.foundItem;
+                    until not _G.foundItem
                 end
                 if _G.grabbingItem then
                     repeat
                         wait()
-                    until not _G.grabbingItem;
+                    until not _G.grabbingItem
                 end
                 if not shared.toggle then
                     repeat
@@ -383,15 +383,15 @@ spawn(function()
                     until shared.toggle
                 end
                 if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
-                    player.Character.HumanoidRootPart.CFrame = v;
-                    wait(speed);
-                    grabItem();
-                    wait(speed);
+                    player.Character.HumanoidRootPart.CFrame = v
+                    wait(speed)
+                    grabItem()
+                    wait(speed)
                 end
             end
         end
     end
-end);
+end)
 
 spawn(function()
     while wait() do
@@ -418,4 +418,4 @@ spawn(function()
             )
         end
     end
-end);
+end)
