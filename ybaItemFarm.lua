@@ -1,3 +1,115 @@
+_G.SliderColor = Color3.fromRGB(255, 150, 255)
+_G.ToggleColor = Color3.fromRGB(255, 150, 255)
+
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+
+local window = library:CreateWindow("ITEM FARM")
+
+local folder = window:CreateFolder("MAIN")
+
+local whitelist = window:CreateFolder("WHITELIST")
+
+local itemWhitelist = {
+    ["Rokakaka"] = false,
+    ["Mysterious Arrow"] = false,
+    ["Gold Coin"] = false,
+    ["Diamond"] = false,
+    ["Quinton's Glove"] = false,
+    ["Ancient Scroll"] = false,
+    ["Zepellin's Headband"] = false,
+    ["Steel Ball"] = false,
+    ["Stone Mask"] = false,
+    ["Rib Cage of The Saint's Corpse"] = false,
+    ["Deo's Diary"] = false,
+    ["Pure Rokakaka"] = false,
+    ["Lucky Arrow"] = false,
+}
+
+whitelist:Toggle("ROKAKAKA", function(bool)
+    shared.rokakakaToggle = bool
+    itemWhitelist["Rokakaka"] = bool
+end)
+
+whitelist:Toggle("MYSTERIOUS ARROW", function(bool)
+    shared.arrowToggle = bool
+    itemWhitelist["Mysterious Arrow"] = bool
+end)
+
+whitelist:Toggle("GOLD COIN", function(bool)
+    shared.coinToggle = bool
+    itemWhitelist["Gold Coin"] = bool
+end)
+
+whitelist:Toggle("DIAMOND", function(bool)
+    shared.diamondToggle = bool
+    itemWhitelist["Diamond"] = bool
+end)
+
+whitelist:Toggle("QUINTON'S GLOVE", function(bool)
+    shared.gloveToggle = bool
+    itemWhitelist["Quinton's Glove"] = bool
+end)
+
+whitelist:Toggle("ANCIENT SCROLL", function(bool)
+    shared.scrollToggle = bool
+    itemWhitelist["Ancient Scroll"] = bool
+end)
+
+whitelist:Toggle("ZEPELLIN'S HEADBAND", function(bool)
+    shared.headbandToggle = bool
+    itemWhitelist["Zepellin's Headband"] = bool
+end)
+
+whitelist:Toggle("STEEL BALL", function(bool)
+    shared.ballToggle = bool
+    itemWhitelist["Steel Ball"] = bool
+end)
+
+whitelist:Toggle("STONE MASK", function(bool)
+    shared.maskToggle = bool
+    itemWhitelist["Stone Mask"] = bool
+end)
+
+whitelist:Toggle("RIB CAGE OF THE SAINT'S CORPSE", function(bool)
+    shared.ribcageToggle = bool
+    itemWhitelist["Rib Cage of The Saint's Corpse"] = bool
+end)
+
+whitelist:Toggle("DEO'S DIARY", function(bool)
+    shared.diaryToggle = bool
+    itemWhitelist["Deo's Diary"] = bool
+end)
+
+whitelist:Toggle("PURE ROKAKAKA", function(bool)
+    shared.pureToggle = bool
+    itemWhitelist["Pure Rokakaka"] = bool
+end)
+
+whitelist:Toggle("LUCKY ARROW", function(bool)
+    shared.luckyToggle = bool
+    itemWhitelist["Lucky Arrow"] = bool
+end)
+
+folder:Toggle("AUTO FARM", function(bool)
+    shared.toggle = bool
+    print(shared.toggle)
+end)
+
+folder:Toggle("AUTO SELL ITEMS", function(bool)
+    shared.sellToggle = bool
+    print(shared.sellToggle)
+end)
+
+local speed = 0.25
+
+folder:Slider("SPEED", {
+    min = 0.125;
+    max = 1;
+    precise = true;
+}, function(value)
+    speed = value
+end)
+
 _G.itemFarm = true;
 _G.foundItem = false;
 _G.grabbingItem = false;
@@ -168,7 +280,7 @@ local function grabItem()
                             end
                         end
                     end
-                    wait(0.25);
+                    wait(speed);
                     _G.grabbingItem = false;
                 end
             end
@@ -200,7 +312,7 @@ local function grabFoundItem(v)
                     end
                 end
             end
-            wait(0.25);
+            wait(speed);
             _G.grabbingItem = false;
         end
     end
@@ -208,49 +320,7 @@ end
 
 coroutine.wrap(function()
     while wait() do
-        if _G.autoSellRokaArrow then
-            for _, child in pairs(player.Backpack:GetChildren()) do
-                if child.Name == "Rokakaka" or child.Name == "Mysterious Arrow" then
-                    local humanoid = character:FindFirstChildWhichIsA("Humanoid")
-                    humanoid:EquipTool(child)
-                    character.RemoteEvent:FireServer("EndDialogue", {
-                        NPC = "Merchant",
-                        Dialogue = "Dialogue5",
-                        Option = "Option2"
-                    }
-                    )
-                end
-            end
-        end
-        if _G.autoSellGoldCoins then
-            for _, child in pairs(player.Backpack:GetChildren()) do
-                if child.Name == "Gold Coin" then
-                    local humanoid = character:FindFirstChildWhichIsA("Humanoid")
-                    humanoid:EquipTool(child)
-                    character.RemoteEvent:FireServer("EndDialogue", {
-                        NPC = "Merchant",
-                        Dialogue = "Dialogue5",
-                        Option = "Option2"
-                    }
-                    )
-                end
-            end
-        end
-        if _G.autoSellAllJunk then
-            for _, child in pairs(player.Backpack:GetChildren()) do
-                if child.Name == "Gold Coin" or child.Name == "Rokakaka" or child.Name == "Mysterious Arrow" or child.Name == "Rib Cage of The Saint's Corpse" or child.Name == "Ancient Scroll" or child.Name == "Quinton's Glove" or child.Name == "Steel Ball" or child.Name == "Zepellin's Headband" or child.Name == "DEO's Diary" then
-                    local humanoid = character:FindFirstChildWhichIsA("Humanoid")
-                    humanoid:EquipTool(child)
-                    character.RemoteEvent:FireServer("EndDialogue", {
-                        NPC = "Merchant",
-                        Dialogue = "Dialogue5",
-                        Option = "Option2"
-                    }
-                    )
-                end
-            end
-        end
-        if _G.itemFarm and #(workspace.Item_Spawns.Items:GetChildren()) >= 1 then
+        if shared.toggle and _G.itemFarm and #(workspace.Item_Spawns.Items:GetChildren()) >= 1 then
             if _G.grabbingItem then
                 repeat
                     wait()
@@ -260,34 +330,60 @@ coroutine.wrap(function()
             for i, v in pairs(workspace.Item_Spawns.Items:GetChildren()) do
                 if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
                     grabFoundItem(v);
-                    wait(0.25);
+                    wait(speed);
                     _G.foundItem = false;
-                    wait(0.25);
-                end 
+                    wait(speed);
+                end
             end
         end
     end
 end)();
 
-while wait() do
-    if _G.itemFarm then
-        for i, v in ipairs(itemSpawns) do
-            if _G.foundItem then
-                repeat
-                    wait()
-                until not _G.foundItem;
-            end
-            if _G.grabbingItem then
-                repeat
-                    wait()
-                until not _G.grabbingItem;
-            end
-            if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
-                player.Character.HumanoidRootPart.CFrame = v;
-                wait(0.25);
-                grabItem();
-                wait(0.25);
+coroutine.wrap(function()
+    while wait() do
+        if shared.toggle and _G.itemFarm then
+            for i, v in ipairs(itemSpawns) do
+                if _G.foundItem then
+                    repeat
+                        wait()
+                    until not _G.foundItem;
+                end
+                if _G.grabbingItem then
+                    repeat
+                        wait()
+                    until not _G.grabbingItem;
+                end
+                if not shared.toggle then
+                    repeat
+                        wait()
+                    until shared.toggle
+                end
+                if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
+                    player.Character.HumanoidRootPart.CFrame = v;
+                    wait(speed);
+                    grabItem();
+                    wait(speed);
+                end
             end
         end
-    end 
-end
+    end
+end)();
+
+coroutine.wrap(function()
+    while wait() do
+        if shared.sellToggle then
+            for _, child in pairs(player.Backpack:GetChildren()) do
+                if itemWhitelist[child.Name] then
+                    local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+                    humanoid:EquipTool(child)
+                    character.RemoteEvent:FireServer("EndDialogue", {
+                        NPC = "Merchant",
+                        Dialogue = "Dialogue5",
+                        Option = "Option2"
+                    }
+                    )
+                end
+            end
+        end
+    end
+end)();
