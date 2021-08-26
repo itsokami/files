@@ -22,35 +22,34 @@ local folder = window:CreateFolder("MAIN")
 
 local whitelist = window:CreateFolder("WHITELIST")
 
+local otherWindow = library:CreateWindow("STAND UTILITY [WIP]")
+
+local otherFolder = otherWindow:CreateFolder("MAIN")
+
 local itemWhitelist = {
-    ["Rokakaka"] = false,
-    ["Mysterious Arrow"] = false,
-    ["Gold Coin"] = false,
-    ["Diamond"] = false,
-    ["Quinton's Glove"] = false,
     ["Ancient Scroll"] = false,
-    ["Zepellin's Headband"] = false,
+    ["Deo's Diary"] = false,
+    ["Diamond"] = false,
+    ["Gold Coin"] = false,
+    ["Lucky Arrow"] = false,
+    ["Mysterious Arrow"] = false,
+    ["Pure Rokakaka"] = false,
+    ["Quinton's Glove"] = false,
+    ["Rib Cage of The Saint's Corpse"] = false,
+    ["Rokakaka"] = false,
     ["Steel Ball"] = false,
     ["Stone Mask"] = false,
-    ["Rib Cage of The Saint's Corpse"] = false,
-    ["Deo's Diary"] = false,
-    ["Pure Rokakaka"] = false,
-    ["Lucky Arrow"] = false,
+    ["Zepellin's Headband"] = false,
 }
 
-whitelist:Toggle("ROKAKAKA", function(bool)
-    shared.rokakakaToggle = bool
-    itemWhitelist["Rokakaka"] = bool
+whitelist:Toggle("ANCIENT SCROLL", function(bool)
+    shared.scrollToggle = bool
+    itemWhitelist["Ancient Scroll"] = bool
 end)
 
-whitelist:Toggle("MYSTERIOUS ARROW", function(bool)
-    shared.arrowToggle = bool
-    itemWhitelist["Mysterious Arrow"] = bool
-end)
-
-whitelist:Toggle("GOLD COIN", function(bool)
-    shared.coinToggle = bool
-    itemWhitelist["Gold Coin"] = bool
+whitelist:Toggle("DEO'S DIARY", function(bool)
+    shared.diaryToggle = bool
+    itemWhitelist["Deo's Diary"] = bool
 end)
 
 whitelist:Toggle("DIAMOND", function(bool)
@@ -58,19 +57,39 @@ whitelist:Toggle("DIAMOND", function(bool)
     itemWhitelist["Diamond"] = bool
 end)
 
+whitelist:Toggle("GOLD COIN", function(bool)
+    shared.coinToggle = bool
+    itemWhitelist["Gold Coin"] = bool
+end)
+
+whitelist:Toggle("LUCKY ARROW", function(bool)
+    shared.luckyToggle = bool
+    itemWhitelist["Lucky Arrow"] = bool
+end)
+
+whitelist:Toggle("MYSTERIOUS ARROW", function(bool)
+    shared.arrowToggle = bool
+    itemWhitelist["Mysterious Arrow"] = bool
+end)
+
+whitelist:Toggle("PURE ROKAKAKA", function(bool)
+    shared.pureToggle = bool
+    itemWhitelist["Pure Rokakaka"] = bool
+end)
+
 whitelist:Toggle("QUINTON'S GLOVE", function(bool)
     shared.gloveToggle = bool
     itemWhitelist["Quinton's Glove"] = bool
 end)
 
-whitelist:Toggle("ANCIENT SCROLL", function(bool)
-    shared.scrollToggle = bool
-    itemWhitelist["Ancient Scroll"] = bool
+whitelist:Toggle("RIB CAGE OF THE SAINT'S CORPSE", function(bool)
+    shared.ribcageToggle = bool
+    itemWhitelist["Rib Cage of The Saint's Corpse"] = bool
 end)
 
-whitelist:Toggle("ZEPELLIN'S HEADBAND", function(bool)
-    shared.headbandToggle = bool
-    itemWhitelist["Zepellin's Headband"] = bool
+whitelist:Toggle("ROKAKAKA", function(bool)
+    shared.rokakakaToggle = bool
+    itemWhitelist["Rokakaka"] = bool
 end)
 
 whitelist:Toggle("STEEL BALL", function(bool)
@@ -83,27 +102,12 @@ whitelist:Toggle("STONE MASK", function(bool)
     itemWhitelist["Stone Mask"] = bool
 end)
 
-whitelist:Toggle("RIB CAGE OF THE SAINT'S CORPSE", function(bool)
-    shared.ribcageToggle = bool
-    itemWhitelist["Rib Cage of The Saint's Corpse"] = bool
+whitelist:Toggle("ZEPELLIN'S HEADBAND", function(bool)
+    shared.headbandToggle = bool
+    itemWhitelist["Zepellin's Headband"] = bool
 end)
 
-whitelist:Toggle("DEO'S DIARY", function(bool)
-    shared.diaryToggle = bool
-    itemWhitelist["Deo's Diary"] = bool
-end)
-
-whitelist:Toggle("PURE ROKAKAKA", function(bool)
-    shared.pureToggle = bool
-    itemWhitelist["Pure Rokakaka"] = bool
-end)
-
-whitelist:Toggle("LUCKY ARROW", function(bool)
-    shared.luckyToggle = bool
-    itemWhitelist["Lucky Arrow"] = bool
-end)
-
-folder:Toggle("AUTO FARM", function(bool)
+folder:Toggle("AUTO ITEM FARM", function(bool)
     shared.toggle = bool
 end)
 
@@ -113,6 +117,17 @@ end)
 
 folder:Toggle("AUTO SELL ITEMS", function(bool)
     shared.sellToggle = bool
+end)
+
+otherFolder:Toggle("AUTO STAND FARM", function(bool)
+    shared.standToggle = bool
+end)
+
+local desiredStand = "nil"
+
+otherFolder:Dropdown("DESIRED STAND", {"Airsmith", "Anubiz", "Deadly King", "Golden Spirit", "Grey Rapier", "Ice Album", "Magician's Ember", "Ms. Vice President", "Platinum Sun", "Scarlet King", "Shining Sapphire", "Six Pistols", "Tentacle Green", "That Hand", "The Universe", "Violet Fog", "Violet Vine", "Void", "White Poison", "Yellow Hot Chili Pepper", "Zipper Fingers"}, true, function(value)
+    print(value)
+    desiredStand = value
 end)
 
 folder:Button("CLICK TELEPORT", function()
@@ -162,7 +177,7 @@ for i = #gc, 1, -1 do
     end
 end
 
-local oldNamecall
+local oldNamecall;
 oldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
     local args = {
         ...
@@ -171,7 +186,7 @@ oldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
         if key then
             return key
         else
-            return "  ___XP DE KEY"
+            return "  ___XP DE KEY";
         end
     end
     if not checkcaller() and getnamecallmethod() == "InvokeServer" and args[1] == "Reset" then
@@ -183,7 +198,7 @@ oldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
     if not checkcaller() and getnamecallmethod() == "Kick" then
         return
     end
-    return oldNamecall(self, ...)
+    return oldNamecall(self, ...);
 end)
 
 for _, connection in pairs(getconnections(player.Idled)) do
@@ -193,9 +208,9 @@ end
 for i, v in pairs(getgc()) do
     if type(v) == "function" and tostring(getfenv(v).script) == 'Client' and #debug.getprotos(v) == 7 and searchTable(debug.getupvalues(v), "RemoteEvent") then
         hookfunction(v, function()
-            return wait(9e9)
-        end)
-        break
+            return wait(9e9);
+        end);
+        break;
     end
 end
 wait(0.5)
@@ -342,51 +357,67 @@ local function grabFoundItem(v)
     end
 end
 
-spawn(function()
-    while wait() do
-        if shared.toggle and _G.itemFarm and #(workspace.Item_Spawns.Items:GetChildren()) >= 1 then
-            if _G.grabbingItem then
-                repeat
-                    wait()
-                until not _G.grabbingItem
-            end
-            _G.foundItem = true
-            for i, v in pairs(workspace.Item_Spawns.Items:GetChildren()) do
-                if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
-                    grabFoundItem(v)
-                    wait(speed)
-                    _G.foundItem = false
-                    wait(speed)
-                end
-            end
-        end
-    end
-end)
+local function giveWorthiness()
+    character.RemoteFunction:InvokeServer("LearnSkill", {
+        Skill = "Vitality I",
+        SkillTreeType = "Character"
+    }
+    )
+    character.RemoteFunction:InvokeServer("LearnSkill", {
+        Skill = "Vitality II",
+        SkillTreeType = "Character"
+    }
+    )
+    character.RemoteFunction:InvokeServer("LearnSkill", {
+        Skill = "Vitality III",
+        SkillTreeType = "Character"
+    }
+    )
+    character.RemoteFunction:InvokeServer("LearnSkill", {
+        Skill = "Worthiness I",
+        SkillTreeType = "Character"
+    }
+    )
+    character.RemoteFunction:InvokeServer("LearnSkill", {
+        Skill = "Worthiness II",
+        SkillTreeType = "Character"
+    }
+    )
+    character.RemoteFunction:InvokeServer("LearnSkill", {
+        Skill = "Worthiness III",
+        SkillTreeType = "Character"
+    }
+    )
+    character.RemoteFunction:InvokeServer("LearnSkill", {
+        Skill = "Worthiness IV",
+        SkillTreeType = "Character"
+    }
+    )
+    character.RemoteFunction:InvokeServer("LearnSkill", {
+        Skill = "Worthiness V",
+        SkillTreeType = "Character"
+    }
+    )
+end
 
 spawn(function()
-    while wait() do
-        if shared.toggle and _G.itemFarm then
-            for i, v in ipairs(itemSpawns) do
-                if _G.foundItem then
-                    repeat
-                        wait()
-                    until not _G.foundItem
-                end
+    while true do
+        wait()
+        if shared.toggle then
+            if _G.itemFarm and #(workspace.Item_Spawns.Items:GetChildren()) >= 1 then
                 if _G.grabbingItem then
                     repeat
                         wait()
                     until not _G.grabbingItem
                 end
-                if not shared.toggle then
-                    repeat
-                        wait()
-                    until shared.toggle
-                end
-                if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
-                    player.Character.HumanoidRootPart.CFrame = v
-                    wait(speed)
-                    grabItem()
-                    wait(speed)
+                _G.foundItem = true
+                for i, v in pairs(workspace.Item_Spawns.Items:GetChildren()) do
+                    if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
+                        grabFoundItem(v)
+                        wait(speed)
+                        _G.foundItem = false
+                        wait(speed)
+                    end
                 end
             end
         end
@@ -394,7 +425,41 @@ spawn(function()
 end)
 
 spawn(function()
-    while wait() do
+    while true do
+        wait()
+        if shared.toggle then
+            if _G.itemFarm then
+                for i, v in ipairs(itemSpawns) do
+                    if _G.foundItem then
+                        repeat
+                            wait()
+                        until not _G.foundItem
+                    end
+                    if _G.grabbingItem then
+                        repeat
+                            wait()
+                        until not _G.grabbingItem
+                    end
+                    if not shared.toggle then
+                        repeat
+                            wait()
+                        until shared.toggle
+                    end
+                    if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
+                        player.Character.HumanoidRootPart.CFrame = v
+                        wait(speed)
+                        grabItem()
+                        wait(speed)
+                    end
+                end
+            end
+        end
+    end
+end)
+
+spawn(function()
+    while true do
+        wait()
         if shared.sellToggle then
             for _, child in pairs(player.Backpack:GetChildren()) do
                 if itemWhitelist[child.Name] then
@@ -416,6 +481,56 @@ spawn(function()
                 Option = "Option1"
             }
             )
+        end
+    end
+end)
+
+spawn(function()
+    while true do
+        wait()
+        if shared.standToggle then
+            wait(15)
+            repeat
+                wait()
+            until character.Health.Value > 0 and character.Humanoid.Health > 0
+            if player.PlayerStats.Stand.Value == desiredStand then
+                repeat
+                    wait()
+                until player.PlayerStats.Stand.Value ~= desiredStand
+            end
+            giveWorthiness()
+            wait(0.125)
+            local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+            humanoid:EquipTool(player.Backpack:FindFirstChild("Mysterious Arrow"))
+            character.RemoteEvent:FireServer("EndDialogue", {
+                NPC = "Mysterious Arrow",
+                Dialogue = "Dialogue2",
+                Option = "Option1"
+            }
+            )
+            repeat
+                wait()
+            until player.PlayerStats.Stand.Value ~= "None"
+            if player.PlayerStats.Stand.Value == desiredStand then
+                repeat
+                    wait()
+                until player.PlayerStats.Stand.Value ~= desiredStand
+            end
+            wait(2)
+            if player.PlayerStats.Stand.Value ~= "None" and player.PlayerStats.Stand.Value ~= desiredStand then
+                local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+                humanoid:EquipTool(player.Backpack:FindFirstChild("Rokakaka"))
+                character.RemoteEvent:FireServer("EndDialogue", {
+                    NPC = "Rokakaka",
+                    Dialogue = "Dialogue2",
+                    Option = "Option1"
+                }
+                )
+                repeat
+                    wait()
+                until character.Health.Value <= 0 and character.Humanoid.Health <= 0
+            end
+            wait(1)
         end
     end
 end)
