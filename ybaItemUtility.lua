@@ -14,17 +14,13 @@ local character = player.Character
 
 local mouse = player:GetMouse()
 
-local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua"))()
 
 local window = library:CreateWindow("ITEM UTILITY")
 
 local folder = window:CreateFolder("MAIN")
 
 local whitelist = window:CreateFolder("WHITELIST")
-
-local otherWindow = library:CreateWindow("STAND UTILITY [WIP]")
-
-local otherFolder = otherWindow:CreateFolder("MAIN")
 
 local itemWhitelist = {
     ["Ancient Scroll"] = false,
@@ -117,17 +113,6 @@ end)
 
 folder:Toggle("AUTO SELL ITEMS", function(bool)
     shared.sellToggle = bool
-end)
-
-otherFolder:Toggle("AUTO STAND FARM", function(bool)
-    shared.standToggle = bool
-end)
-
-local desiredStand = "nil"
-
-otherFolder:Dropdown("DESIRED STAND", {"Airsmith", "Anubiz", "Deadly King", "Golden Spirit", "Grey Rapier", "Ice Album", "Magician's Ember", "Ms. Vice President", "Platinum Sun", "Scarlet King", "Shining Sapphire", "Six Pistols", "Tentacle Green", "That Hand", "The Universe", "Violet Fog", "Violet Vine", "Void", "White Poison", "Yellow Hot Chili Pepper", "Zipper Fingers"}, true, function(value)
-    print(value)
-    desiredStand = value
 end)
 
 folder:Button("CLICK TELEPORT", function()
@@ -481,56 +466,6 @@ spawn(function()
                 Option = "Option1"
             }
             )
-        end
-    end
-end)
-
-spawn(function()
-    while true do
-        wait()
-        if shared.standToggle and desiredStand ~= "nil" then
-            wait(15)
-            repeat
-                wait()
-            until character.Health.Value > 0 and character.Humanoid.Health > 0
-            if player.PlayerStats.Stand.Value == desiredStand then
-                repeat
-                    wait()
-                until player.PlayerStats.Stand.Value ~= desiredStand
-            end
-            giveWorthiness()
-            wait(0.125)
-            local humanoid = character:FindFirstChildWhichIsA("Humanoid")
-            humanoid:EquipTool(player.Backpack:FindFirstChild("Mysterious Arrow"))
-            character.RemoteEvent:FireServer("EndDialogue", {
-                NPC = "Mysterious Arrow",
-                Dialogue = "Dialogue2",
-                Option = "Option1"
-            }
-            )
-            repeat
-                wait()
-            until player.PlayerStats.Stand.Value ~= "None"
-            if player.PlayerStats.Stand.Value == desiredStand then
-                repeat
-                    wait()
-                until player.PlayerStats.Stand.Value ~= desiredStand
-            end
-            wait(2)
-            if player.PlayerStats.Stand.Value ~= "None" and player.PlayerStats.Stand.Value ~= desiredStand then
-                local humanoid = character:FindFirstChildWhichIsA("Humanoid")
-                humanoid:EquipTool(player.Backpack:FindFirstChild("Rokakaka"))
-                character.RemoteEvent:FireServer("EndDialogue", {
-                    NPC = "Rokakaka",
-                    Dialogue = "Dialogue2",
-                    Option = "Option1"
-                }
-                )
-                repeat
-                    wait()
-                until character.Health.Value <= 0 and character.Humanoid.Health <= 0
-            end
-            wait(1)
         end
     end
 end)
